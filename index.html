@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIFA World Cup 2026 – Full Schedule (IST)</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0e1a;
+      color: #e8edf5;
+      min-height: 100vh;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0f1420; }
+    ::-webkit-scrollbar-thumb { background: #2a3050; border-radius: 3px; }
+
+    /* ── Header ── */
+    .header {
+      background: linear-gradient(135deg, #0f1420 0%, #1a1f35 50%, #0f1420 100%);
+      border-bottom: 1px solid #1e2a45;
+      padding: 2rem 1.5rem 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -60%;
+      left: -20%;
+      width: 140%;
+      height: 200%;
+      background: radial-gradient(ellipse at 30% 50%, rgba(59,130,246,.06) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 50%, rgba(16,185,129,.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .header-content { position: relative; z-index: 1; }
+    .header-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(59,130,246,.12); border: 1px solid rgba(59,130,246,.25);
+      padding: .35rem 1rem; border-radius: 100px;
+      font-size: .7rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em;
+      color: #60a5fa; margin-bottom: .75rem;
+    }
+    .header h1 {
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 800; letter-spacing: -.02em;
+      background: linear-gradient(135deg, #f0f4ff 0%, #60a5fa 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .header-sub {
+      margin-top: .35rem; font-size: .9rem; color: #8892b0;
+      display: flex; align-items: center; justify-content: center; gap: .5rem; flex-wrap: wrap;
+    }
+    .header-sub strong { color: #e8edf5; font-weight: 600; }
+    .header-sub .ist-badge {
+      background: #1a5a3a; color: #34d399; padding: .15rem .6rem; border-radius: 4px;
+      font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+    }
+
+    /* ── Stats Bar ── */
+    .stats-bar {
+      display: flex; flex-wrap: wrap; gap: .5rem 1.5rem;
+      justify-content: center; margin-top: 1rem;
+      font-size: .8rem; color: #8892b0;
+    }
+    .stats-bar span { display: flex; align-items: center; gap: .4rem; }
+    .stats-bar strong { color: #e8edf5; font-weight: 600; }
+
+    /* ── Container ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
+
+    /* ── Filters ── */
+    .filters {
+      display: flex; flex-wrap: wrap; gap: .75rem;
+      margin-bottom: 1.5rem; align-items: center;
+    }
+    .filters label { font-size: .8rem; font-weight: 500; color: #8892b0; }
+    .filter-group { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+    .filter-group select, .filter-group input {
+      background: #141a2e; border: 1px solid #1e2a45; border-radius: 6px;
+      padding: .45rem .75rem; font-size: .8rem; color: #e8edf5; font-family: inherit;
+      outline: none; transition: border-color .2s;
+    }
+    .filter-group select:focus, .filter-group input:focus { border-color: #3b82f6; }
+    .filter-group input::placeholder { color: #4a5578; }
+    .filter-group input { min-width: 180px; }
+    .filter-group select { cursor: pointer; }
+    .filters .clear-btn {
+      background: transparent; border: 1px solid #2a3050; border-radius: 6px;
+      padding: .4rem .8rem; font-size: .75rem; color: #8892b0; cursor: pointer;
+      transition: all .2s; font-family: inherit;
+    }
+    .filters .clear-btn:hover { border-color: #ef4444; color: #ef4444; }
+    .match-count {
+      margin-left: auto; font-size: .8rem; color: #8892b0;
+      background: #141a2e; padding: .35rem .85rem; border-radius: 6px;
+      border: 1px solid #1e2a45;
+    }
+    .match-count strong { color: #60a5fa; }
+
+    /* ── Day Group ── */
+    .day-group { margin-bottom: 1.25rem; }
+    .day-header {
+      display: flex; align-items: center; gap: .75rem;
+      padding: .75rem 1rem; margin-bottom: .75rem;
+      background: linear-gradient(135deg, #141a2e 0%, #1a1f35 100%);
+      border: 1px solid #1e2a45; border-radius: 10px;
+      cursor: pointer; user-select: none;
+      transition: border-color .2s;
+    }
+    .day-header:hover { border-color: #2a3050; }
+    .day-header .day-date {
+      font-size: .8rem; font-weight: 700; color: #60a5fa; text-transform: uppercase;
+      letter-spacing: .04em; min-width: 120px;
+    }
+    .day-header .day-name {
+      font-size: .9rem; font-weight: 600; color: #e8edf5;
+    }
+    .day-header .day-match-count {
+      margin-left: auto; font-size: .7rem; color: #8892b0;
+      background: rgba(255,255,255,.04); padding: .15rem .6rem; border-radius: 4px;
+    }
+    .day-header .day-toggle {
+      font-size: .8rem; color: #4a5578; transition: transform .2s;
+    }
+    .day-header.collapsed .day-toggle { transform: rotate(-90deg); }
+
+    /* ── Match Card ── */
+    .day-matches { display: flex; flex-direction: column; gap: .6rem; }
+    .day-header.collapsed + .day-matches { display: none; }
+    .match-card {
+      display: flex; align-items: center; gap: 1rem;
+      padding: .85rem 1rem;
+      background: #101624; border: 1px solid #1a2038; border-radius: 10px;
+      transition: all .25s ease;
+      position: relative;
+    }
+    .match-card:hover {
+      border-color: #2a3a6a; background: #131a2c;
+      transform: translateX(4px);
+    }
+    .match-card.live {
+      border-color: #22c55e; background: rgba(34,197,94,.04);
+      box-shadow: 0 0 20px rgba(34,197,94,.06);
+    }
+    .match-card.live::before {
+      content: 'LIVE'; position: absolute; top: -1px; right: 1rem;
+      background: #22c55e; color: #052e16; font-size: .55rem; font-weight: 800;
+      padding: .1rem .5rem; border-radius: 0 0 6px 6px; letter-spacing: .05em;
+    }
+    .match-card.finished { opacity: .65; }
+    .match-card.finished .match-result {
+      background: rgba(255,255,255,.06); font-weight: 600;
+    }
+    .match-stage {
+      font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+      color: #60a5fa; background: rgba(59,130,246,.1);
+      padding: .15rem .55rem; border-radius: 4px; white-space: nowrap;
+      min-width: 70px; text-align: center;
+    }
+    .match-stage.knockout { background: rgba(251,146,60,.1); color: #fb923c; }
+    .match-stage.final-stage { background: rgba(250,204,21,.1); color: #eab308; }
+
+    .match-teams {
+      flex: 1; display: flex; align-items: center; gap: .6rem;
+      font-size: .88rem; font-weight: 500;
+    }
+    .match-teams .vs { color: #4a5578; font-size: .7rem; font-weight: 400; }
+    .match-result {
+      margin-left: .3rem; font-size: .8rem; font-weight: 700;
+      color: #34d399; white-space: nowrap;
+    }
+
+    .match-info {
+      display: flex; align-items: center; gap: 1rem;
+      font-size: .78rem; color: #8892b0; white-space: nowrap;
+    }
+    .match-info .ist-time {
+      color: #34d399; font-family: 'JetBrains Mono', monospace; font-weight: 500;
+      font-size: .82rem; background: rgba(52,211,153,.08);
+      padding: .15rem .5rem; border-radius: 4px;
+    }
+    .match-info .venue {
+      display: flex; align-items: center; gap: .3rem;
+    }
+    .match-info .venue .flag { font-size: .85rem; }
+
+    /* ── No results ── */
+    .no-results {
+      text-align: center; padding: 3rem 1rem; color: #4a5578;
+    }
+    .no-results .big-icon { font-size: 3rem; margin-bottom: .5rem; display: block; }
+    .no-results p { font-size: .9rem; }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center; padding: 2rem 1.5rem; font-size: .75rem;
+      color: #2a3050; border-top: 1px solid #141a2e; margin-top: 2rem;
+    }
+    .footer a { color: #4a5578; text-decoration: none; }
+    .footer a:hover { color: #60a5fa; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .match-card { flex-wrap: wrap; gap: .5rem; }
+      .match-info { flex-wrap: wrap; gap: .4rem; flex: 1 1 100%; }
+      .match-info .venue { min-width: 0; }
+      .filters { flex-direction: column; align-items: stretch; }
+      .filter-group select, .filter-group input { width: 100%; }
+      .match-count { margin-left: 0; text-align: center; }
+      .day-header .day-date { min-width: 80px; font-size: .7rem; }
+    }
+    @media (max-width: 480px) {
+      .container { padding: .75rem; }
+      .match-card { padding: .7rem; }
+      .match-teams { font-size: .8rem; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="header">
+  <div class="header-content">
+    <div class="header-badge">🏆 23rd Edition · 48 Teams · 104 Matches</div>
+    <h1>FIFA World Cup 2026</h1>
+    <p class="header-sub">
+      <span>Complete Match Calendar</span>
+      <span>·</span>
+      <span><strong>Indian Standard Time</strong> <span class="ist-badge">IST (UTC+5:30)</span></span>
+    </p>
+    <div class="stats-bar">
+      <span>🗓️ <strong id="totalMatches">104</strong> Matches</span>
+      <span>🏟️ <strong>16</strong> Venues</span>
+      <span>🌍 <strong>3</strong> Countries</span>
+      <span>📅 June 11 – July 19, 2026</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ MAIN ═══ -->
+<div class="container" id="app">
+  <!-- Filters -->
+  <div class="filters">
+    <div class="filter-group">
+      <label for="stageFilter">Stage</label>
+      <select id="stageFilter">
+        <option value="all">All Stages</option>
+        <option value="Group">Group Stage</option>
+        <option value="Round of 32">Round of 32</option>
+        <option value="Round of 16">Round of 16</option>
+        <option value="Quarter-final">Quarter-finals</option>
+        <option value="Semi-final">Semi-finals</option>
+        <option value="Third Place">Third Place</option>
+        <option value="Final">Final</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="dateFilter">Date</label>
+      <select id="dateFilter">
+        <option value="all">All Dates</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="teamSearch">🔍 Team</label>
+      <input type="text" id="teamSearch" placeholder="Search teams..." />
+    </div>
+    <button class="clear-btn" id="clearFilters">✕ Clear</button>
+    <div class="match-count" id="matchCount">Showing <strong>104</strong> matches</div>
+  </div>
+
+  <!-- Calendar -->
+  <div id="calendar"></div>
+  <div class="no-results" id="noResults" style="display:none">
+    <span class="big-icon">🔍</span>
+    <p>No matches found. Try different filters.</p>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <p>Data sourced from FIFA &amp; Sky Sports. Times converted to <strong>Indian Standard Time (IST = UTC+5:30)</strong>.</p>
+  <p style="margin-top:.3rem;">Built with ❤️ &mdash; <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026">Official FIFA Site</a></p>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+//  MATCH DATA – UK times (BST = UTC+1), all converted to IST (UTC+5:30)
+// ═══════════════════════════════════════════════════════════════════
+
+const MATCHES = [
+  // ── June 11 ──
+  { date:"2026-06-11", uk:"20:00", stage:"Group A", team1:"Mexico", team2:"South Africa", venue:"Estadio Azteca", city:"Mexico City", country:"🇲🇽", result:"2-0" },
+
+  // ── June 12 ──
+  { date:"2026-06-12", uk:"17:00", stage:"Group A", team1:"South Korea", team2:"Czech Republic", venue:"Estadio BBVA", city:"Guadalupe", country:"🇲🇽", result:"2-1" },
+  { date:"2026-06-12", uk:"20:00", stage:"Group B", team1:"Canada", team2:"Bosnia & Herzegovina", venue:"BMO Field", city:"Toronto", country:"🇨🇦" },
+
+  // ── June 13 ──
+  { date:"2026-06-13", uk:"02:00", stage:"Group D", team1:"USA", team2:"Paraguay", venue:"SoFi Stadium", city:"Los Angeles", country:"🇺🇸" },
+  { date:"2026-06-13", uk:"20:00", stage:"Group B", team1:"Qatar", team2:"Switzerland", venue:"Levi's Stadium", city:"Santa Clara", country:"🇺🇸" },
+  { date:"2026-06-13", uk:"23:00", stage:"Group C", team1:"Brazil", team2:"Morocco", venue:"MetLife Stadium", city:"East Rutherford", country:"🇺🇸" },
+
+  // ── June 14 ──
+  { date:"2026-06-14", uk:"02:00", stage:"Group C", team1:"Haiti", team2:"Scotland", venue:"Gillette Stadium", city:"Foxborough", country:"🇺🇸" },
+  { date:"2026-06-14", uk:"05:00", stage:"Group D", team1:"Australia", team2:"Turkey", venue:"BC Place", city:"Vancouver", country:"🇨🇦" },
+  { date:"2026-06-14", uk:"18:00", stage:"Group E", team1:"Germany", team2:"Curacao", venue:"NRG Stadium", city:"Houston", country:"🇺🇸" },
+  { date:"2026-06-14", uk:"21:00", stage:"Group F", team1:"Netherlands", team2:"Japan", venue:"AT&T Stadium", city:"Arlington", country:"🇺🇸" },
+
+  // ── June 15 ──
+  { date:"2026-06-15", uk:"00:00", stage:"Group E", team1:"Ivory Coast", team2:"Ecuador", venue:"Lincoln Financial Field", city:"Philadelphia", country:"🇺🇸" },
+  { date:"2026-06-15", uk:"03:00", stage:"Group F", team1:"Sweden", team2:"Tunisia", venue:"Estadio BBVA", city:"Guadalupe", country:"🇲🇽" },
+  { date:"2026-06-15", uk:"17:00", stage:"Group H", team1:"Spain", team2:"Cape Verde", venue:"Mercedes-Benz Stadium", city:"Atlanta", country:"🇺🇸" },
+  { date:"2026-06-15", uk:"20:00", stage:"Group G", team1:"Belgium", team2:"Egypt", venue:"Lumen Field", city:"Seattle", country:"🇺🇸" },
+  { date:"2026-06-15", uk:"23:00", stage:"Group H", team1:"Saudi Arabia", team2:"Uruguay", venue:"Hard Rock Stadium", city:"Miami Gardens", country:"🇺🇸" },
+
+  // ── June 16 ──
+  { date:"2026-06-16", uk:"02:00", stage:"Group G", team1:"Iran", team2:"New Zealand", venue:"SoFi Stadium", city:"Los Angeles", country:"🇺🇸" },
+  { date:"2026-06-16", uk:"20:00", stage:"Group I", team1:"France", team2:"Senegal", venue:"MetLife Stadium", city:"East Rutherford", country:"🇺🇸" },
+  { date:"2026-06-16", uk:"23:00", stage:"Group I", team1:"Iraq", team2:"Norway", venue:"Gillette Stadium", city:"Foxborough", country:"🇺🇸" },
+
+  // ── June 17 ──
+  { date:"2026-06-17", uk:"02:00", stage:"Group J", team1:"Argentina", team2:"Algeria", venue:"Arrowhead Stadium", city:"Kansas City", country:"🇺🇸" },
+  { date:"2026-06-17", uk:"05:00", stage:"Group J", team1:"Austria", team2:"Jordan", venue:"Levi's Stadium", city:"Santa Clara", country:"🇺🇸" },
+  { date:"2026-06-17", uk:"18:00", stage:"Group K", team1:"Portugal", team2:"DR Congo", venue:"NRG Stadium", city:"Houston", country:"🇺🇸" },
+  { date:"2026-06-17", uk:"21:00", stage:"Group L", team1:"England", team2:"Croatia", venue:"AT&T Stadium", city:"Arlington", country:"🇺🇸" },
+
+  // ── June 18 ──
+  { date:"2026-06-18", uk:"00:00", stage:"Group L", team1:"Ghana", team2:"Panama", venue:"BMO Field", city:"Toronto", country:"🇨🇦" },
+  { date:"2026-06-18", uk:"03:00", stage:"Group K", team1:"Uzbekistan", team2:"Colombia", venue:"Estadio Azteca", city:"Mexico City", country:"🇲🇽" },
+  { date:"2026-06-18", uk:"17:00", stage:"Group A", team1:"Czech Republic", team2:"South Africa", venue:"Mercedes-Benz Stadium", city:"Atlanta", country:"🇺🇸" },
+  { date:"2026-06-18", uk:"20:00", stage:"Group B", team1:"Switzerland", team2:"Bosnia & Herzegovina", venue:"SoFi Stadium", city:"Los Angeles", country:"🇺🇸" },
+  { date:"2026-06-18", uk:"23:00", stage:"Group B", team1:"Canada", team2:"Qatar", venue:"BC Place", city:"Vancouver", country:"🇨🇦" },
+
+  // ── June 19 ──
+  { date:"2026-06-19", uk:"02:00", stage:"Group A", team1:"Mexico", team2:"South Korea", venue:"Estadio BBVA", city:"Guadalupe", country:"🇲🇽" },
+  { date:"2026-06-19", uk:"20:00", stage:"Group D", team1:"USA", team2:"Australia", venue:"Lumen Field", city:"Seattle", country:"🇺🇸" },
+  { date:"2026-06-19", uk:"23:00", stage:"Group C", team1:"Scotland", team2:"Morocco", venue:"Gillette Stadium", city:"Foxborough", country:"🇺🇸" },
+
+  // ── June 20 ──
+  { date:"2026-06-20", uk:"01:30", stage:"Group C", team1:"Brazil", team2:"Haiti", venue:"Lincoln Financial Field", city:"Philadelphia", country:"🇺🇸" },
+  { date:"2026-06-20", uk:"04:00", stage:"Group D", team1:"Turkey", team2:"Paraguay", venue:"Levi's Stadium", city:"Santa Clara", country:"🇺🇸" },
+  { date:"2026-06-20", uk:"18:00", stage:"Group F", team1:"Netherlands", team2:"Sweden", venue:"NRG Stadium", city:"Houston", country:"🇺🇸" },
+  { date:"2026-06-20", uk:"21:00", stage:"Group E", team1:"Germany", team2:"Ivory Coast", venue:"BMO Field", city:"Toronto", country:"🇨🇦" },
+
+  // ── June 21 ──
+  { date:"2026-06-21", uk:"01:00", stage:"Group E", team1:"Ecuador", team2:"Curacao", venue:"Arrowhead Stadium", city:"Kansas City", country:"🇺🇸" },
+  { date:"2026-06-21", uk:"05:00", stage:"Group F", team1:"Tunisia", team2:"Japan", venue:"Estadio BBVA", city:"Guadalupe", country:"🇲🇽" },
+  { date:"2026-06-21", uk:"17:00", stage:"Group H", team1:"Spain", team2:"Saudi Arabia", venue:"Mercedes-Benz Stadium", city:"Atlanta", country:"🇺🇸" },
+  { date:"2026-06-21", uk:"20:00", stage:"Group G", team1:"Belgium", team2:"Iran", venue:"SoFi Stadium", city:"Los Angeles", country:"🇺🇸" },
+  { date:"2026-06-21", uk:"23:00", stage:"Group H", team1:"Uruguay", team2:"Cape Verde", venue:"Hard Rock Stadium", city:"Miami Gardens", country:"🇺🇸" },
+
+  // ── June 22 ──
+  { date:"2026-06-22", uk:"02:00", stage:"Group G", team1:"New Zealand", team2:"Egypt", venue:"BC Place", city:"Vancouver", country:"🇨🇦" },
+  { date:"2026-06-22", uk:"18:00", stage:"Group J", team1:"Argentina", team2:"Austria", venue:"AT&T Stadium", city:"Arlington", country:"🇺🇸" },
+  { date:"2026-06-22", uk:"22:00", stage:"Group I", team1:"France", team2:"Iraq", venue:"Lincoln Financial Field", city:"Philadelphia", country:"🇺🇸" },
+
+  // ── June 23 ──
+  { date:"2026-06-23", uk:"01:00", stage:"Group I", team1:"Norway", team2:"Senegal", venue:"BMO Field", city:"Toronto", country:"🇨🇦" },
+  { date:"2026-06-23", uk:"04:00", stage:"Group J", team1:"Jordan", team2:"Algeria", venue:"Levi's Stadium", city:"Santa Clara", country:"🇺🇸" },
+  { date:"2026-06-23", uk:"18:00", stage:"Group K", team1:"Portugal", team2:"Uzbekistan", venue:"NRG Stadium", city:"Houston", country:"🇺🇸" },
+  { date:"2026-06-23", uk:"21:00", stage:"Group L", team1:"England", team2:"Ghana", venue:"Gillette Stadium", city:"Foxborough", country:"🇺🇸" },
+
+  // ── June 24 ──
+  { date:"2026-06-24", uk:"00:00", stage:"Group L", team1:"Panama", team2:"Croatia", venue:"Gillette Stadium", city:"Foxborough", country:"🇺🇸" },
+  { date:"2026-06-24", uk:"03:00", stage:"Group K", team1:"Colombia", team2:"DR Congo", venue:"Estadio BBVA", city:"Zapopan", country:"🇲🇽" },
+  { date:"2026-06-24", uk:"20:00", stage:"Group B", team1:"Switzerland", team2:"Canada", venue:"BC Place", city:"Vancouver", country:"🇨🇦" },
+  { date:"2026-06-24", uk:"20:00", stage:"Group B", team1:"Bosnia & Herzegovina", team2:"Qatar", venue:"Lumen Field", city:"Seattle", country:"🇺🇸" },
+  { date:"2026-06-24", uk:"23:00", stage:"Group C", team1:"Morocco", team2:"Haiti", venue:"Mercedes-Benz Stadium", city:"Atlanta", country:"🇺🇸" },
+  { date:"2026-06-24", uk:"23:00", stage:"Group C", team1:"Scotland", team2:"Brazil", venue:"Hard Rock Stadium", city:"Miami Gardens", country:"🇺🇸" },
+
+  // ── June 25 ──
+  { date:"2026-06-25", uk:"02:00", stage:"Group A", team1:"South Africa", team2:"South Korea", venue:"Estadio BBVA", city:"Guadalupe", country:"🇲🇽" },
+  { date:"2026-06-25", uk:"02:00", stage:"Group A", team1:"Czech Republic", team2:"Mexico", venue:"Estadio Azteca", city:"Mexico City", country:"🇲🇽" },
+  { date:"2026-06-25", uk:"21:00", stage:"Group E", team1:"Curacao", team2:"Ivory Coast", venue:"Lincoln Financial Field", city:"Philadelphia", country:"🇺🇸" },
+  { date:"2026-06-25", uk:"21:00", stage:"Group E", team1:"Ecuador", team2:"Germany", venue:"MetLife Stadium", city:"East Rutherford", country:"🇺🇸" },
+
+  // ── June 26 ──
+  { date:"2026-06-26", uk:"00:00", stage:"Group F", team1:"Tunisia", team2:"Netherlands", venue:"Arrowhead Stadium", city:"Kansas City", country:"🇺🇸" },
+  { date:"2026-06-26", uk:"00:00", stage:"Group F", team1:"Japan", team2:"Sweden", venue:"AT&T Stadium", city:"Arlington", country:"🇺🇸" },
+  { date:"2026-06-26", uk:"03:00", stage:"Group D", team1:"Turkey", team2:"USA", venue:"SoFi Stadium", city:"Los Angeles", country:"🇺🇸" },
+  { date:"2026-06-26", uk:"03:00", stage:"Group D", team1:"Paraguay", team2:"Australia", venue:"Levi's Stadium", city:"Santa Clara", country:"🇺🇸" },
+  { date:"2026-06-26", uk:"20:00", stage:"Group I", team1:"Norway", team2:"France", venue:"Gillette Stadium", city:"Foxborough", country:"🇺🇸" },
+  { date:"2026-06-26", uk:"20:00", stage:"Group I", team1:"Senegal", team2:"Iraq", venue:"BMO Field", city:"Toronto", country:"🇨🇦" },
+
+  // ── June 27 ──
+  { date:"2026-06-27", uk:"01:00", stage:"Group H", team1:"Cape Verde", team2:"Saudi Arabia", venue:"NRG Stadium", city:"Houston", country:"🇺🇸" },
+  { date:"2026-06-27", uk:"01:00", stage:"Group H", team1:"Uruguay", team2:"Spain", venue:"Estadio BBVA", city:"Zapopan", country:"🇲🇽" },
+  { date:"2026-06-27", uk:"04:00", stage:"Group G", team1:"New Zealand", team2:"Belgium", venue:"BC Place", city:"Vancouver", country:"🇨🇦" },
+  { date:"2026-06-27", uk:"04:00", stage:"Group G", team1:"Egypt", team2:"Iran", venue:"Lumen Field", city:"Seattle", country:"🇺🇸" },
+  { date:"2026-06-27", uk:"22:00", stage:"Group L", team1:"Panama", team2:"England", venue:"MetLife Stadium", city:"East Rutherford", country:"🇺🇸" },
+  { date:"2026-06-27", uk:"22:00", stage:"Group L", team1:"Croatia", team2:"Ghana", venue:"Lincoln Financial Field", city:"Philadelphia", country:"🇺🇸" },
+
+  // ── June 28 ──
+  { date:"2026-06-28", uk:"00:30", stage:"Group K", team1:"Colombia", team2:"Portugal", venue:"Hard Rock Stadium", city:"Miami Gardens", country:"🇺🇸" },
+  { date:"2026-06-28", uk:"00:30", stage:"Group K", team1:"DR Congo", team2:"Uzbekistan", venue:"Mercedes-Benz Stadium", city:"Atlanta", country:"🇺🇸" },
+  { date:"2026-06-28", uk:"03:00", stage:"Group J", team1:"Algeria", team2:"Austria", venue:"Arrowhead Stadium", city:"Kansas City", country:"🇺🇸" },
+  { date:"2026-06-28", uk:"03:00", stage:"Group J", team1:"Jordan", team2:"Argentina", venue:"AT&T Stadium", city:"Arlington", country:"🇺🇸" },
+  { date:"2026-06-28", uk:"20:00", stage:"Round of 32", team1:"Group A RU", team2:"Group B RU", venue:"SoFi Stadium", city:"Los Angeles", country:"🇺🇸" },
+
+  // ── June 29 ──
+  { date:"2026-06-29", uk:"18:00", stage:"Round of 32", team1:"Group C W", team2:"Group F RU", venue:"NRG Stadium", city:"Houston", country:"🇺🇸" },
+  { date:"2026-06-29", uk:"21:30", stage:"Round of 32", team1:"Group E W", team2:"3rd A/B/C/D/F", venue:"Gillette Stadium", city:"Foxborough", country:"🇺🇸" },
+
+  // ── June 30 ──
+  { date:"2026-06-30", uk:"02:00", stage:"Round of 32", team1:"Group F W", team2:"Group C RU", venue:"Estadio BBVA", city:"Guadalupe", country:"🇲🇽" },
+  { date:"2026-06-30", uk:"18:00", stage:"Round of 32", team1:"Group E RU", team2:"Group I RU", venue:"AT&T Stadium", city:"Arlington", country:"🇺🇸" },
+  { date:"2026-06-30", uk:"22:00", stage:"Round of 32", team1:"Group I W", team2:"3rd C/D/F/G/H", venue:"MetLife Stadium", city:"East Rutherford", country:"🇺🇸" },
+
+  // ── July 1 ──
+  { date:"2026-07-01", uk:"02:00", stage:"Round of 32", team1:"Group A W", team2:"3rd C/E/F/H/I", venue:"Estadio Azteca", city:"Mexico City", country:"🇲🇽" },
+  { date:"2026-07-01", uk:"17:00", stage:"Round of 32", team1:"Group L W", team2:"3rd E/H/I/J/K", venue:"Mercedes-Benz Stadium", city:"Atlanta", country:"🇺🇸" },
+  { date:"2026-07-01", uk:"21:00", stage:"Round of 32", team1:"Group G W", team2:"3rd A/E/H/I/J", venue:"Lumen Field", city:"Seattle", country:"🇺🇸" },
+
+  // ── July 2 ──
+  { date:"2026-07-02", uk:"01:00", stage:"Round of 32", team1:"Group D W", team2:"3rd B/E/F/I/J", venue:"Levi's Stadium", city:"Santa Clara", country:"🇺🇸" },
+  { date:"2026-07-02", uk:"20:00", stage:"Round of 32", team1:"Group H W", team2:"Group J RU", venue:"SoFi Stadium", city:"Los Angeles", country:"🇺🇸" },
+
+  // ── July 3 ──
+  { date:"2026-07-03", uk:"00:00", stage:"Round of 32", team1:"Group K RU", team2:"Group L RU", venue:"BMO Field", city:"Toronto", country:"🇨🇦" },
+  { date:"2026-07-03", uk:"04:00", stage:"Round of 32", team1:"Group B W", team2:"3rd E/F/G/I/J", venue:"BC Place", city:"Vancouver", country:"🇨🇦" },
+  { date:"2026-07-03", uk:"19:00", stage:"Round of 32", team1:"Group D RU", team2:"Group G RU", venue:"AT&T Stadium", city:"Arlington", country:"🇺🇸" },
+  { date:"2026-07-03", uk:"23:00", stage:"Round of 32", team1:"Group J W", team2:"Group H RU", venue:"Hard Rock Stadium", city:"Miami Gardens", country:"🇺🇸" },
+
+  // ── July 4 ──
+  { date:"2026-07-04", uk:"02:30", stage:"Round of 32", team1:"Group K W", team2:"3rd D/E/I/J/L", venue:"Arrowhead Stadium", city:"Kansas City", country:"🇺🇸" },
+  { date:"2026-07-04", uk:"18:00", stage:"Round of 16", team1:"M73 W", team2:"M75 W", venue:"NRG Stadium", city:"Houston", country:"🇺🇸" },
+  { date:"2026-07-04", uk:"22:00", stage:"Round of 16", team1:"M74 W", team2:"M77 W", venue:"Lincoln Financial Field", city:"Philadelphia", country:"🇺🇸" },
+
+  // ── July 5 ──
+  { date:"2026-07-05", uk:"21:00", stage:"Round of 16", team1:"M76 W", team2:"M78 W", venue:"MetLife Stadium", city:"East Rutherford", country:"🇺🇸" },
+
+  // ── July 6 ──
+  { date:"2026-07-06", uk:"01:00", stage:"Round of 16", team1:"M79 W", team2:"M80 W", venue:"Estadio Azteca", city:"Mexico City", country:"🇲🇽" },
+  { date:"2026-07-06", uk:"20:00", stage:"Round of 16", team1:"M83 W", team2:"M84 W", venue:"AT&T Stadium", city:"Arlington", country:"🇺🇸" },
+
+  // ── July 7 ──
+  { date:"2026-07-07", uk:"01:00", stage:"Round of 16", team1:"M81 W", team2:"M82 W", venue:"Lumen Field", city:"Seattle", country:"🇺🇸" },
+  { date:"2026-07-07", uk:"17:00", stage:"Round of 16", team1:"M86 W", team2:"M88 W", venue:"Mercedes-Benz Stadium", city:"Atlanta", country:"🇺🇸" },
+  { date:"2026-07-07", uk:"21:00", stage:"Round of 16", team1:"M85 W", team2:"M87 W", venue:"BC Place", city:"Vancouver", country:"🇨🇦" },
+
+  // ── July 9 ──
+  { date:"2026-07-09", uk:"21:00", stage:"Quarter-final", team1:"M89 W", team2:"M90 W", venue:"Gillette Stadium", city:"Foxborough", country:"🇺🇸" },
+
+  // ── July 10 ──
+  { date:"2026-07-10", uk:"20:00", stage:"Quarter-final", team1:"M93 W", team2:"M94 W", venue:"SoFi Stadium", city:"Los Angeles", country:"🇺🇸" },
+
+  // ── July 11 ──
+  { date:"2026-07-11", uk:"22:00", stage:"Quarter-final", team1:"M91 W", team2:"M92 W", venue:"Hard Rock Stadium", city:"Miami Gardens", country:"🇺🇸" },
+
+  // ── July 12 ──
+  { date:"2026-07-12", uk:"02:00", stage:"Quarter-final", team1:"M95 W", team2:"M96 W", venue:"Arrowhead Stadium", city:"Kansas City", country:"🇺🇸" },
+
+  // ── July 14 ──
+  { date:"2026-07-14", uk:"20:00", stage:"Semi-final", team1:"M97 W", team2:"M98 W", venue:"AT&T Stadium", city:"Arlington", country:"🇺🇸" },
+
+  // ── July 15 ──
+  { date:"2026-07-15", uk:"20:00", stage:"Semi-final", team1:"M99 W", team2:"M100 W", venue:"Mercedes-Benz Stadium", city:"Atlanta", country:"🇺🇸" },
+
+  // ── July 18 ──
+  { date:"2026-07-18", uk:"22:00", stage:"Third Place", team1:"M101 Loser", team2:"M102 Loser", venue:"Hard Rock Stadium", city:"Miami Gardens", country:"🇺🇸" },
+
+  // ── July 19 ──
+  { date:"2026-07-19", uk:"20:00", stage:"Final", team1:"M101 W", team2:"M102 W", venue:"MetLife Stadium", city:"East Rutherford", country:"🇺🇸" },
+];
+
+// ═══════════════════════════════════════════════════════════════════
+//  UTILITIES
+// ═══════════════════════════════════════════════════════════════════
+
+function parseUKTime(dateStr, ukTime) {
+  // UK times are BST = UTC+1. To convert BST to UTC, subtract 1 hour.
+  const [h, m] = ukTime.split(':').map(Number);
+  const dt = new Date(dateStr + 'T00:00:00Z'); // midnight UTC
+  // BST (UTC+1) to UTC: subtract 1 hour, then add the match hours+minutes
+  return new Date(dt.getTime() + (h - 1) * 3600000 + m * 60000);
+}
+
+function formatIST(date) {
+  // IST is UTC+5:30
+  const ist = new Date(date.getTime() + 5.5 * 3600000);
+  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const d = ist.getUTCDate();
+  const mon = months[ist.getUTCMonth()];
+  const day = days[ist.getUTCDay()];
+  const hh = String(ist.getUTCHours()).padStart(2, '0');
+  const mm = String(ist.getUTCMinutes()).padStart(2, '0');
+  return { dateStr: `${day}, ${d} ${mon}`, timeStr: `${hh}:${mm}`, weekday: day };
+}
+
+function getStageClass(stage) {
+  if (stage.startsWith('Group')) return '';
+  if (stage === 'Round of 32' || stage === 'Round of 16') return 'knockout';
+  return 'final-stage';
+}
+
+function dayName(dateStr) {
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  return days[new Date(dateStr + 'T12:00:00Z').getUTCDay()];
+}
+
+function formatDateLabel(dateStr) {
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const dt = new Date(dateStr + 'T12:00:00Z');
+  return `${months[dt.getUTCMonth()]} ${dt.getUTCDate()}`;
+}
+
+function getISTDate(dateStr, ukTime) {
+  const dt = parseUKTime(dateStr, ukTime);
+  const ist = new Date(dt.getTime() + 5.5 * 3600000);
+  return `${ist.getUTCFullYear()}-${String(ist.getUTCMonth()+1).padStart(2,'0')}-${String(ist.getUTCDate()).padStart(2,'0')}`;
+}
+
+// Build unique date list from IST perspective
+function buildDateOptions(matches) {
+  const dateSet = new Set();
+  matches.forEach(m => dateSet.add(getISTDate(m.date, m.uk)));
+  return [...dateSet].sort();
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  RENDER
+// ═══════════════════════════════════════════════════════════════════
+
+const calendarEl = document.getElementById('calendar');
+const noResultsEl = document.getElementById('noResults');
+const matchCountEl = document.getElementById('matchCount');
+const stageFilter = document.getElementById('stageFilter');
+const dateFilter = document.getElementById('dateFilter');
+const teamSearch = document.getElementById('teamSearch');
+const clearBtn = document.getElementById('clearFilters');
+
+function render() {
+  const stageVal = stageFilter.value;
+  const dateVal = dateFilter.value;
+  const teamVal = teamSearch.value.toLowerCase().trim();
+
+  const filtered = MATCHES.filter(m => {
+    if (stageVal !== 'all' && !m.stage.startsWith(stageVal)) {
+      // For "Group Stage" filter, match any "Group *"
+      if (!(stageVal === 'Group' && m.stage.startsWith('Group'))) return false;
+    }
+    if (dateVal !== 'all') {
+      const istDate = getISTDate(m.date, m.uk);
+      if (istDate !== dateVal) return false;
+    }
+    if (teamVal) {
+      const t1 = m.team1.toLowerCase();
+      const t2 = m.team2.toLowerCase();
+      const stage = m.stage.toLowerCase();
+      const venue = m.venue.toLowerCase();
+      const city = m.city.toLowerCase();
+      if (!t1.includes(teamVal) && !t2.includes(teamVal) && !stage.includes(teamVal) && !venue.includes(teamVal) && !city.includes(teamVal)) return false;
+    }
+    return true;
+  });
+
+  // Group by IST date
+  const groups = {};
+  filtered.forEach(m => {
+    const istDate = getISTDate(m.date, m.uk);
+    if (!groups[istDate]) groups[istDate] = [];
+    groups[istDate].push(m);
+  });
+
+  const sortedDates = Object.keys(groups).sort();
+
+  matchCountEl.innerHTML = `Showing <strong>${filtered.length}</strong> match${filtered.length !== 1 ? 'es' : ''}`;
+  noResultsEl.style.display = sortedDates.length ? 'none' : 'block';
+
+  if (!sortedDates.length) {
+    calendarEl.innerHTML = '';
+    return;
+  }
+
+  let html = '';
+  sortedDates.forEach(istDate => {
+    const matches = groups[istDate];
+    const label = formatDateLabel(istDate);
+    const day = dayName(istDate);
+    html += `<div class="day-group">
+      <div class="day-header">
+        <span class="day-date">${label}</span>
+        <span class="day-name">${day}</span>
+        <span class="day-match-count">${matches.length} match${matches.length !== 1 ? 'es' : ''}</span>
+        <span class="day-toggle">▼</span>
+      </div>
+      <div class="day-matches">`;
+
+    matches.forEach(m => {
+      const dt = parseUKTime(m.date, m.uk);
+      const ist = formatIST(dt);
+      const stageClass = getStageClass(m.stage);
+      const isPast = new Date() > parseUKTime(m.date, m.uk);
+      const hasResult = !!m.result;
+
+      html += `<div class="match-card${hasResult || isPast ? ' finished' : ''}">
+        <span class="match-stage ${stageClass}">${m.stage}</span>
+        <div class="match-teams">
+          <span>${m.team1}</span>
+          <span class="vs">vs</span>
+          <span>${m.team2}</span>
+          ${hasResult ? `<span class="match-result">${m.result}</span>` : ''}
+        </div>
+        <div class="match-info">
+          <span class="ist-time">${ist.timeStr} IST</span>
+          <span class="venue"><span class="flag">${m.country}</span> ${m.city}</span>
+        </div>
+      </div>`;
+    });
+
+    html += `</div></div>`;
+  });
+
+  calendarEl.innerHTML = html;
+
+  // Collapse/expand
+  document.querySelectorAll('.day-header').forEach(h => {
+    h.addEventListener('click', () => {
+      h.classList.toggle('collapsed');
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════════════════════════
+
+// Populate date filter
+const dateOptions = buildDateOptions(MATCHES);
+dateOptions.forEach(d => {
+  const opt = document.createElement('option');
+  opt.value = d;
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const dt = new Date(d + 'T12:00:00Z');
+  opt.textContent = `${months[dt.getUTCMonth()]} ${dt.getUTCDate()} (${dayName(d)})`;
+  dateFilter.appendChild(opt);
+});
+
+// Event listeners
+stageFilter.addEventListener('change', render);
+dateFilter.addEventListener('change', render);
+teamSearch.addEventListener('input', render);
+clearBtn.addEventListener('click', () => {
+  stageFilter.value = 'all';
+  dateFilter.value = 'all';
+  teamSearch.value = '';
+  render();
+});
+
+// Initial render
+render();
+</script>
+
+</body>
+</html>
