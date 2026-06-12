@@ -490,7 +490,7 @@
 <script>
 const MATCHES = [
   { date:"2026-06-11", uk:"20:00", stage:"Group A", team1:"Mexico", team2:"South Africa", venue:"Estadio Azteca", city:"Mexico City", country:"🇲🇽", result:"2-0" },
-  { date:"2026-06-12", uk:"17:00", stage:"Group A", team1:"South Korea", team2:"Czech Republic", venue:"Estadio BBVA", city:"Guadalupe", country:"🇲🇽", result:"2-1" },
+  { date:"2026-06-12", uk:"03:00", stage:"Group A", team1:"South Korea", team2:"Czech Republic", venue:"Estadio Akron", city:"Zapopan", country:"🇲🇽", result:"2-1" },
   { date:"2026-06-12", uk:"20:00", stage:"Group B", team1:"Canada", team2:"Bosnia & Herzegovina", venue:"BMO Field", city:"Toronto", country:"🇨🇦" },
   { date:"2026-06-13", uk:"02:00", stage:"Group D", team1:"USA", team2:"Paraguay", venue:"SoFi Stadium", city:"Los Angeles", country:"🇺🇸" },
   { date:"2026-06-13", uk:"20:00", stage:"Group B", team1:"Qatar", team2:"Switzerland", venue:"Levi's Stadium", city:"Santa Clara", country:"🇺🇸" },
@@ -516,7 +516,7 @@ const MATCHES = [
   { date:"2026-06-18", uk:"17:00", stage:"Group A", team1:"Czech Republic", team2:"South Africa", venue:"Mercedes-Benz Stadium", city:"Atlanta", country:"🇺🇸" },
   { date:"2026-06-18", uk:"20:00", stage:"Group B", team1:"Switzerland", team2:"Bosnia & Herzegovina", venue:"SoFi Stadium", city:"Los Angeles", country:"🇺🇸" },
   { date:"2026-06-18", uk:"23:00", stage:"Group B", team1:"Canada", team2:"Qatar", venue:"BC Place", city:"Vancouver", country:"🇨🇦" },
-  { date:"2026-06-19", uk:"02:00", stage:"Group A", team1:"Mexico", team2:"South Korea", venue:"Estadio BBVA", city:"Guadalupe", country:"🇲🇽" },
+  { date:"2026-06-19", uk:"02:00", stage:"Group A", team1:"Mexico", team2:"South Korea", venue:"Estadio Akron", city:"Zapopan", country:"🇲🇽" },
   { date:"2026-06-19", uk:"20:00", stage:"Group D", team1:"USA", team2:"Australia", venue:"Lumen Field", city:"Seattle", country:"🇺🇸" },
   { date:"2026-06-19", uk:"23:00", stage:"Group C", team1:"Scotland", team2:"Morocco", venue:"Gillette Stadium", city:"Foxborough", country:"🇺🇸" },
   { date:"2026-06-20", uk:"01:30", stage:"Group C", team1:"Brazil", team2:"Haiti", venue:"Lincoln Financial Field", city:"Philadelphia", country:"🇺🇸" },
@@ -536,7 +536,7 @@ const MATCHES = [
   { date:"2026-06-23", uk:"18:00", stage:"Group K", team1:"Portugal", team2:"Uzbekistan", venue:"NRG Stadium", city:"Houston", country:"🇺🇸" },
   { date:"2026-06-23", uk:"21:00", stage:"Group L", team1:"England", team2:"Ghana", venue:"Gillette Stadium", city:"Foxborough", country:"🇺🇸" },
   { date:"2026-06-24", uk:"00:00", stage:"Group L", team1:"Panama", team2:"Croatia", venue:"Gillette Stadium", city:"Foxborough", country:"🇺🇸" },
-  { date:"2026-06-24", uk:"03:00", stage:"Group K", team1:"Colombia", team2:"DR Congo", venue:"Estadio BBVA", city:"Zapopan", country:"🇲🇽" },
+  { date:"2026-06-24", uk:"03:00", stage:"Group K", team1:"Colombia", team2:"DR Congo", venue:"Estadio Akron", city:"Zapopan", country:"🇲🇽" },
   { date:"2026-06-24", uk:"20:00", stage:"Group B", team1:"Switzerland", team2:"Canada", venue:"BC Place", city:"Vancouver", country:"🇨🇦" },
   { date:"2026-06-24", uk:"20:00", stage:"Group B", team1:"Bosnia & Herzegovina", team2:"Qatar", venue:"Lumen Field", city:"Seattle", country:"🇺🇸" },
   { date:"2026-06-24", uk:"23:00", stage:"Group C", team1:"Morocco", team2:"Haiti", venue:"Mercedes-Benz Stadium", city:"Atlanta", country:"🇺🇸" },
@@ -552,7 +552,7 @@ const MATCHES = [
   { date:"2026-06-26", uk:"20:00", stage:"Group I", team1:"Norway", team2:"France", venue:"Gillette Stadium", city:"Foxborough", country:"🇺🇸" },
   { date:"2026-06-26", uk:"20:00", stage:"Group I", team1:"Senegal", team2:"Iraq", venue:"BMO Field", city:"Toronto", country:"🇨🇦" },
   { date:"2026-06-27", uk:"01:00", stage:"Group H", team1:"Cape Verde", team2:"Saudi Arabia", venue:"NRG Stadium", city:"Houston", country:"🇺🇸" },
-  { date:"2026-06-27", uk:"01:00", stage:"Group H", team1:"Uruguay", team2:"Spain", venue:"Estadio BBVA", city:"Zapopan", country:"🇲🇽" },
+  { date:"2026-06-27", uk:"01:00", stage:"Group H", team1:"Uruguay", team2:"Spain", venue:"Estadio Akron", city:"Zapopan", country:"🇲🇽" },
   { date:"2026-06-27", uk:"04:00", stage:"Group G", team1:"New Zealand", team2:"Belgium", venue:"BC Place", city:"Vancouver", country:"🇨🇦" },
   { date:"2026-06-27", uk:"04:00", stage:"Group G", team1:"Egypt", team2:"Iran", venue:"Lumen Field", city:"Seattle", country:"🇺🇸" },
   { date:"2026-06-27", uk:"22:00", stage:"Group L", team1:"Panama", team2:"England", venue:"MetLife Stadium", city:"East Rutherford", country:"🇺🇸" },
@@ -926,6 +926,7 @@ document.querySelectorAll('.view-toggle button').forEach(btn => {
       renderToday();
     } else if (v === 'calendar') {
       document.getElementById('calendarView').style.display = 'block';
+      renderCalendar();
     } else if (v === 'list') {
       document.getElementById('listView').style.display = 'block';
       selectedDate = null;
