@@ -981,6 +981,15 @@ document.getElementById('resultsView').style.display = 'none';
 document.querySelector('[data-view="today"]').classList.add('active');
 document.querySelector('[data-view="calendar"]').classList.remove('active');
 renderToday();
+
+// ═══════════════════════════════════════════════════════════════════
+//  AUTO-REFRESH — re-renders Today view every 60s for live match detection
+// ═══════════════════════════════════════════════════════════════════
+
+setInterval(() => {
+  const todayVisible = document.getElementById('todayView').style.display !== 'none';
+  if (todayVisible) renderToday();
+}, 60000);
 </script>
 </body>
 </html>
