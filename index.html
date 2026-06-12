@@ -250,6 +250,126 @@
     }
     .match-info .venue { display: flex; align-items: center; gap: .3rem; }
     .match-info .venue .flag { font-size: .85rem; }
+
+    /* ── Today Section ── */
+    .today-hero {
+      background: linear-gradient(135deg, #0f1a2e 0%, #1a2045 100%);
+      border: 1px solid #1e3a5a; border-radius: 14px;
+      padding: 1.25rem 1.5rem; margin-bottom: 1.5rem;
+      position: relative; overflow: hidden;
+    }
+    .today-hero::before {
+      content: ''; position: absolute; top: -50%; right: -10%;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(34,197,94,.06) 0%, transparent 70%);
+    }
+    .today-hero .today-head {
+      display: flex; align-items: center; gap: .75rem; margin-bottom: .75rem;
+    }
+    .today-hero .today-badge {
+      background: #22c55e; color: #052e16; font-size: .65rem; font-weight: 800;
+      padding: .2rem .65rem; border-radius: 6px; text-transform: uppercase; letter-spacing: .05em;
+    }
+    .today-hero .today-date {
+      font-size: .85rem; color: #8892b0;
+    }
+    .today-hero .today-count {
+      margin-left: auto; font-size: .75rem; color: #8892b0;
+      background: rgba(255,255,255,.04); padding: .2rem .65rem; border-radius: 6px;
+    }
+    .today-hero .today-matches {
+      display: flex; flex-direction: column; gap: .5rem;
+    }
+    .today-hero .today-match {
+      display: flex; align-items: center; gap: .75rem;
+      padding: .6rem .85rem;
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06);
+      border-radius: 8px; transition: all .2s;
+    }
+    .today-hero .today-match:hover {
+      background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1);
+    }
+    .today-hero .today-match .tm-time {
+      font-family: 'JetBrains Mono', monospace; font-size: .8rem; font-weight: 500;
+      color: #34d399; white-space: nowrap;
+      background: rgba(52,211,153,.08); padding: .1rem .5rem; border-radius: 4px;
+    }
+    .today-hero .today-match .tm-teams {
+      flex: 1; font-size: .85rem; font-weight: 500;
+    }
+    .today-hero .today-match .tm-teams .tm-vs { color: #4a5578; font-size: .7rem; }
+    .today-hero .today-match .tm-stage {
+      font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+      color: #60a5fa; background: rgba(59,130,246,.1);
+      padding: .15rem .5rem; border-radius: 4px;
+    }
+    .today-hero .today-match .tm-venue {
+      font-size: .7rem; color: #4a5578; text-align: right;
+    }
+    .today-hero .today-match.live-now {
+      border-color: #22c55e; background: rgba(34,197,94,.06);
+    }
+    .today-hero .today-match.live-now .tm-time {
+      color: #22c55e; background: rgba(34,197,94,.12);
+    }
+    .today-hero .today-match.live-now .tm-live-dot {
+      display: inline-block; width: 6px; height: 6px;
+      background: #22c55e; border-radius: 50%; margin-right: 4px;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .3; }
+    }
+    .today-hero .no-today {
+      text-align: center; padding: 1rem; color: #4a5578; font-size: .85rem;
+    }
+
+    /* ── Results Section ── */
+    .results-stats {
+      display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 1.25rem;
+    }
+    .results-stats .rs-card {
+      background: #141a2e; border: 1px solid #1e2a45; border-radius: 10px;
+      padding: .75rem 1.25rem; text-align: center; flex: 1; min-width: 100px;
+    }
+    .results-stats .rs-card .rs-num {
+      font-size: 1.4rem; font-weight: 700; color: #60a5fa;
+    }
+    .results-stats .rs-card .rs-label {
+      font-size: .65rem; color: #4a5578; text-transform: uppercase; letter-spacing: .04em;
+      margin-top: .2rem;
+    }
+    .result-card {
+      display: flex; align-items: center; gap: 1rem;
+      padding: .85rem 1.1rem;
+      background: #101624; border: 1px solid #1a2038; border-radius: 10px;
+      margin-bottom: .6rem; transition: all .2s;
+    }
+    .result-card:hover {
+      border-color: #2a3a6a; background: #131a2c;
+    }
+    .result-card .rc-stage {
+      font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+      color: #60a5fa; background: rgba(59,130,246,.1);
+      padding: .15rem .5rem; border-radius: 4px; min-width: 65px; text-align: center;
+    }
+    .result-card .rc-teams {
+      flex: 1; display: flex; align-items: center; gap: .6rem;
+      font-size: .88rem; font-weight: 500;
+    }
+    .result-card .rc-teams .rc-vs { color: #4a5578; font-size: .7rem; }
+    .result-card .rc-score {
+      font-size: 1.05rem; font-weight: 800; color: #34d399;
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(52,211,153,.08); padding: .15rem .7rem;
+      border-radius: 6px; min-width: 50px; text-align: center;
+    }
+    .result-card .rc-info {
+      font-size: .7rem; color: #4a5578; text-align: right; white-space: nowrap;
+    }
+    .result-card.winner-team1 { border-left: 3px solid #34d399; }
+    .result-card.winner-team2 { border-left: 3px solid #f59e0b; }
     .no-results { text-align: center; padding: 3rem 1rem; color: #4a5578; }
     .no-results .big-icon { font-size: 3rem; margin-bottom: .5rem; display: block; }
     .no-results p { font-size: .9rem; }
@@ -301,9 +421,17 @@
 </header>
 <div class="container" id="app">
   <div class="view-toggle" id="viewToggle">
+    <button data-view="today" id="todayTabBtn">🎯 Today</button>
     <button class="active" data-view="calendar">📅 Calendar</button>
     <button data-view="list">📋 List</button>
+    <button data-view="results">✅ Results</button>
   </div>
+  <!-- Today View -->
+  <div id="todayView" style="display:none">
+    <div id="todayHero" class="today-hero"></div>
+  </div>
+
+  <!-- Calendar View -->
   <div id="calendarView">
     <div class="calendar-nav">
       <button class="calendar-nav-btn" id="prevMonth">◀ Prev</button>
@@ -337,6 +465,16 @@
     <button class="clear-btn" id="clearFilters">✕ Clear</button>
     <div class="match-count" id="matchCount">Showing <strong>104</strong> matches</div>
   </div>
+  <!-- Results View -->
+  <div id="resultsView" style="display:none">
+    <div class="results-stats" id="resultsStats"></div>
+    <div id="resultsList"></div>
+    <div class="no-results" id="noResultsResults" style="display:none">
+      <span class="big-icon">🏟️</span>
+      <p>No completed matches yet.</p>
+    </div>
+  </div>
+
   <div id="listView">
     <div id="calendar"></div>
     <div class="no-results" id="noResults" style="display:none">
@@ -510,6 +648,103 @@ function buildMatchLookup(matches) {
   });
   return lookup;
 }
+// ═══════════════════════════════════════════════════════════════════
+//  TODAY VIEW
+// ═══════════════════════════════════════════════════════════════════
+
+function renderToday() {
+  const hero = document.getElementById('todayHero');
+  const now = new Date();
+  const nowIST = new Date(now.getTime() + 5.5 * 3600000);
+  const todayStr = `${nowIST.getUTCFullYear()}-${String(nowIST.getUTCMonth()+1).padStart(2,'0')}-${String(nowIST.getUTCDate()).padStart(2,'0')}`;
+
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const dayN = days[nowIST.getUTCDay()];
+  const dateLabel = `${months[nowIST.getUTCMonth()]} ${nowIST.getUTCDate()}, ${nowIST.getUTCFullYear()}`;
+
+  const todayMatches = MATCHES.filter(m => getISTDate(m.date, m.uk) === todayStr);
+
+  let html = `<div class="today-head">
+    <span class="today-badge">🎯 Today</span>
+    <span class="today-date">${dayN}, ${dateLabel}</span>
+    <span class="today-count">${todayMatches.length} match${todayMatches.length !== 1 ? 'es' : ''}</span>
+  </div>`;
+
+  if (todayMatches.length === 0) {
+    html += `<div class="no-today">✨ No matches scheduled for today. Check the Calendar or List view for upcoming fixtures!</div>`;
+  } else {
+    html += '<div class="today-matches">';
+    todayMatches.forEach(m => {
+      const dt = parseUKTime(m.date, m.uk);
+      const ist = formatIST(dt);
+      const utcNow = now.getTime();
+      const matchStart = dt.getTime();
+      const matchEnd = matchStart + 2 * 3600000;
+      const isLive = utcNow >= matchStart && utcNow <= matchEnd;
+      let cls = 'today-match';
+      if (isLive) cls += ' live-now';
+      const sc = getStageClass(m.stage);
+      const stageBg = sc === 'final-stage' ? 'rgba(250,204,21,.1);color:#eab308' : sc === 'knockout' ? 'rgba(251,146,60,.1);color:#fb923c' : 'rgba(59,130,246,.1);color:#60a5fa';
+      html += `<div class="${cls}">
+        <span class="tm-time">${isLive ? '<span class="tm-live-dot"></span>' : ''}${ist.timeStr} IST</span>
+        <span class="tm-teams">${m.team1} <span class="tm-vs">vs</span> ${m.team2}</span>
+        <span class="tm-stage" style="background:${stageBg}">${m.stage}</span>
+        <span class="tm-venue">${m.country} ${m.city}</span>
+      </div>`;
+    });
+    html += '</div>';
+  }
+  hero.innerHTML = html;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  RESULTS VIEW
+// ═══════════════════════════════════════════════════════════════════
+
+function renderResults() {
+  const resultsList = document.getElementById('resultsList');
+  const statsEl = document.getElementById('resultsStats');
+  const noRes = document.getElementById('noResultsResults');
+
+  const completed = MATCHES.filter(m => !!m.result);
+
+  statsEl.innerHTML = `
+    <div class="rs-card"><div class="rs-num">${completed.length}</div><div class="rs-label">Completed</div></div>
+    <div class="rs-card"><div class="rs-num">${MATCHES.length - completed.length}</div><div class="rs-label">Upcoming</div></div>
+    <div class="rs-card"><div class="rs-num">${new Set(completed.map(m => m.stage)).size}</div><div class="rs-label">Stages</div></div>
+  `;
+
+  if (completed.length === 0) {
+    resultsList.innerHTML = '';
+    noRes.style.display = 'block';
+    return;
+  }
+  noRes.style.display = 'none';
+
+  completed.sort((a, b) => parseUKTime(b.date, b.uk) - parseUKTime(a.date, a.uk));
+
+  let html = '';
+  completed.forEach(m => {
+    const dt = parseUKTime(m.date, m.uk);
+    const ist = formatIST(dt);
+    const stageCls = getStageClass(m.stage);
+    const scores = m.result.split('-').map(Number);
+    const wCls = scores[0] > scores[1] ? 'winner-team1' : scores[1] > scores[0] ? 'winner-team2' : '';
+    html += `<div class="result-card ${wCls}">
+      <span class="rc-stage ${stageCls}">${m.stage}</span>
+      <div class="rc-teams">
+        <span>${m.team1}</span>
+        <span class="rc-vs">vs</span>
+        <span>${m.team2}</span>
+      </div>
+      <span class="rc-score">${m.result}</span>
+      <div class="rc-info">${ist.dateStr} · ${m.country} ${m.city}</div>
+    </div>`;
+  });
+  resultsList.innerHTML = html;
+}
+
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 let currentMonth = 5;
@@ -583,7 +818,9 @@ function renderCalendar() {
 function switchToListView(date) {
   document.querySelectorAll('.view-toggle button').forEach(b => b.classList.remove('active'));
   document.querySelector('[data-view="list"]').classList.add('active');
+  document.getElementById('todayView').style.display = 'none';
   document.getElementById('calendarView').style.display = 'none';
+  document.getElementById('resultsView').style.display = 'none';
   document.getElementById('listView').style.display = 'block';
   dateFilter.value = date;
   render();
@@ -678,18 +915,27 @@ document.querySelectorAll('.view-toggle button').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.view-toggle button').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    if (btn.dataset.view === 'calendar') {
+    const v = btn.dataset.view;
+    // Hide all
+    document.getElementById('todayView').style.display = 'none';
+    document.getElementById('calendarView').style.display = 'none';
+    document.getElementById('listView').style.display = 'none';
+    document.getElementById('resultsView').style.display = 'none';
+    if (v === 'today') {
+      document.getElementById('todayView').style.display = 'block';
+      renderToday();
+    } else if (v === 'calendar') {
       document.getElementById('calendarView').style.display = 'block';
-      document.getElementById('listView').style.display = 'none';
+    } else if (v === 'list') {
+      document.getElementById('listView').style.display = 'block';
       selectedDate = null;
       dateFilter.value = 'all';
       teamSearch.value = '';
       stageFilter.value = 'all';
       render();
-    } else {
-      document.getElementById('calendarView').style.display = 'none';
-      document.getElementById('listView').style.display = 'block';
-      render();
+    } else if (v === 'results') {
+      document.getElementById('resultsView').style.display = 'block';
+      renderResults();
     }
   });
 });
@@ -727,10 +973,14 @@ teamSearch.addEventListener('input', () => {
 clearBtn.addEventListener('click', () => {
   stageFilter.value = 'all'; dateFilter.value = 'all'; teamSearch.value = ''; selectedDate = null; render();
 });
-document.getElementById('calendarView').style.display = 'block';
+// Start on Today view by default
+document.getElementById('todayView').style.display = 'block';
+document.getElementById('calendarView').style.display = 'none';
 document.getElementById('listView').style.display = 'none';
-renderCalendar();
-render();
+document.getElementById('resultsView').style.display = 'none';
+document.querySelector('[data-view="today"]').classList.add('active');
+document.querySelector('[data-view="calendar"]').classList.remove('active');
+renderToday();
 </script>
 </body>
 </html>
