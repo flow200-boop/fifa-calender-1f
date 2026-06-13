@@ -70,7 +70,6 @@
     .stats-bar strong { color: #e8edf5; font-weight: 600; }
     .container { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
 
-    /* ── Animations ── */
     @keyframes fadeSlideUp {
       from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
@@ -91,9 +90,7 @@
       from { opacity: 0; transform: scale(0.5); }
       to { opacity: 1; transform: scale(1); }
     }
-    .view-content {
-      animation: fadeSlideUp .35s ease-out;
-    }
+    .view-content { animation: fadeSlideUp .35s ease-out; }
 
     .view-toggle {
       display: flex; gap: .25rem;
@@ -111,14 +108,11 @@
       background: #1e2a45; color: #e8edf5; box-shadow: 0 1px 3px rgba(0,0,0,.3);
     }
 
-    /* ── Calendar ── */
     .calendar-nav {
       display: flex; align-items: center; justify-content: space-between;
       margin-bottom: .75rem;
     }
-    .calendar-nav .month-title {
-      font-size: 1.1rem; font-weight: 700; color: #e8edf5;
-    }
+    .calendar-nav .month-title { font-size: 1.1rem; font-weight: 700; color: #e8edf5; }
     .calendar-nav .month-title span { color: #60a5fa; }
     .calendar-nav-btn {
       background: #141a2e; border: 1px solid #1e2a45; border-radius: 8px;
@@ -150,10 +144,7 @@
       display: flex; flex-direction: column;
     }
     .calendar-day:nth-child(7n) { border-right: none; }
-    .calendar-day .day-num {
-      font-size: .8rem; font-weight: 600; color: #4a5578;
-      margin-bottom: auto;
-    }
+    .calendar-day .day-num { font-size: .8rem; font-weight: 600; color: #4a5578; margin-bottom: auto; }
     .calendar-day.other-month .day-num { color: #1a2040; }
     .calendar-day.other-month { cursor: default; }
     .calendar-day.other-month:hover { background: transparent; }
@@ -165,10 +156,7 @@
       background: rgba(59,130,246,.12); border-color: #3b82f6;
       box-shadow: inset 0 0 0 1px #3b82f6;
     }
-    .calendar-day .match-indicators {
-      display: flex; flex-direction: column; gap: 2px;
-      margin-top: .3rem;
-    }
+    .calendar-day .match-indicators { display: flex; flex-direction: column; gap: 2px; margin-top: .3rem; }
     .calendar-day .match-dot {
       font-size: .55rem; padding: .05rem .35rem;
       border-radius: 3px; white-space: nowrap; overflow: hidden;
@@ -188,7 +176,6 @@
       animation: countUp .3s ease-out;
     }
 
-    /* ── Filters ── */
     .filters {
       display: flex; flex-wrap: wrap; gap: .75rem;
       margin-bottom: 1.5rem; align-items: center;
@@ -217,11 +204,7 @@
     }
     .match-count strong { color: #60a5fa; }
 
-    /* ── List View ── */
-    .day-group {
-      margin-bottom: 1.25rem;
-      animation: fadeSlideUp .3s ease-out;
-    }
+    .day-group { margin-bottom: 1.25rem; animation: fadeSlideUp .3s ease-out; }
     .day-header {
       display: flex; align-items: center; gap: .75rem;
       padding: .75rem 1rem; margin-bottom: .75rem;
@@ -231,15 +214,9 @@
       transition: all .2s;
     }
     .day-header:hover { border-color: #2a3050; background: linear-gradient(135deg, #181e34 0%, #1e2340 100%); }
-    .day-header .day-date {
-      font-size: .8rem; font-weight: 700; color: #60a5fa; text-transform: uppercase;
-      letter-spacing: .04em; min-width: 120px;
-    }
+    .day-header .day-date { font-size: .8rem; font-weight: 700; color: #60a5fa; text-transform: uppercase; letter-spacing: .04em; min-width: 120px; }
     .day-header .day-name { font-size: .9rem; font-weight: 600; color: #e8edf5; }
-    .day-header .day-match-count {
-      margin-left: auto; font-size: .7rem; color: #8892b0;
-      background: rgba(255,255,255,.04); padding: .15rem .6rem; border-radius: 4px;
-    }
+    .day-header .day-match-count { margin-left: auto; font-size: .7rem; color: #8892b0; background: rgba(255,255,255,.04); padding: .15rem .6rem; border-radius: 4px; }
     .day-header .day-toggle { font-size: .8rem; color: #4a5578; transition: transform .2s; }
     .day-header.collapsed .day-toggle { transform: rotate(-90deg); }
     .day-matches { display: flex; flex-direction: column; gap: .6rem; }
@@ -264,14 +241,8 @@
     .match-card:nth-child(8) { animation-delay: .35s; }
     .match-card:nth-child(9) { animation-delay: .4s; }
     .match-card:nth-child(10) { animation-delay: .45s; }
-    .match-card:hover {
-      border-color: #2a3a6a; background: #131a2c;
-      transform: translateX(4px);
-    }
-    .match-card.live {
-      border-color: #22c55e; background: rgba(34,197,94,.04);
-      animation: glowPulse 2s infinite;
-    }
+    .match-card:hover { border-color: #2a3a6a; background: #131a2c; transform: translateX(4px); }
+    .match-card.live { border-color: #22c55e; background: rgba(34,197,94,.04); animation: glowPulse 2s infinite; }
     .match-card.live::before {
       content: 'LIVE'; position: absolute; top: -1px; right: 1rem;
       background: #22c55e; color: #052e16; font-size: .55rem; font-weight: 800;
@@ -292,10 +263,7 @@
     .match-teams .team-flag { font-size: 1.1rem; line-height: 1; }
     .match-teams .vs { color: #4a5578; font-size: .7rem; font-weight: 400; }
     .match-result { margin-left: .3rem; font-size: .8rem; font-weight: 700; color: #34d399; white-space: nowrap; }
-    .match-info {
-      display: flex; align-items: center; gap: 1rem; font-size: .78rem;
-      color: #8892b0; white-space: nowrap; flex-shrink: 0;
-    }
+    .match-info { display: flex; align-items: center; gap: 1rem; font-size: .78rem; color: #8892b0; white-space: nowrap; flex-shrink: 0; }
     .match-info .ist-time {
       color: #34d399; font-family: 'JetBrains Mono', monospace; font-weight: 500;
       font-size: .82rem; background: rgba(52,211,153,.08);
@@ -303,7 +271,6 @@
     }
     .match-info .venue { display: flex; align-items: center; gap: .3rem; font-size: .72rem; }
 
-    /* ── Today Hero ── */
     .today-hero {
       background: linear-gradient(135deg, #0f1a2e 0%, #1a2045 100%);
       border: 1px solid #1e3a5a; border-radius: 14px;
@@ -316,18 +283,13 @@
       width: 200px; height: 200px;
       background: radial-gradient(circle, rgba(34,197,94,.06) 0%, transparent 70%);
     }
-    .today-hero .today-head {
-      display: flex; align-items: center; gap: .75rem; margin-bottom: .75rem;
-    }
+    .today-hero .today-head { display: flex; align-items: center; gap: .75rem; margin-bottom: .75rem; }
     .today-hero .today-badge {
       background: #22c55e; color: #052e16; font-size: .65rem; font-weight: 800;
       padding: .2rem .65rem; border-radius: 6px; text-transform: uppercase; letter-spacing: .05em;
     }
     .today-hero .today-date { font-size: .85rem; color: #8892b0; }
-    .today-hero .today-count {
-      margin-left: auto; font-size: .75rem; color: #8892b0;
-      background: rgba(255,255,255,.04); padding: .2rem .65rem; border-radius: 6px;
-    }
+    .today-hero .today-count { margin-left: auto; font-size: .75rem; color: #8892b0; background: rgba(255,255,255,.04); padding: .2rem .65rem; border-radius: 6px; }
     .today-hero .today-matches { display: flex; flex-direction: column; gap: .5rem; }
     .today-hero .today-match {
       display: flex; align-items: center; gap: .75rem;
@@ -350,12 +312,8 @@
       padding: .15rem .5rem; border-radius: 4px;
     }
     .today-hero .today-match .tm-venue { font-size: .7rem; color: #4a5578; text-align: right; }
-    .today-hero .today-match.live-now {
-      border-color: #22c55e; background: rgba(34,197,94,.06);
-    }
-    .today-hero .today-match.live-now .tm-time {
-      color: #22c55e; background: rgba(34,197,94,.12);
-    }
+    .today-hero .today-match.live-now { border-color: #22c55e; background: rgba(34,197,94,.06); }
+    .today-hero .today-match.live-now .tm-time { color: #22c55e; background: rgba(34,197,94,.12); }
     .today-hero .today-match.live-now .tm-live-dot {
       display: inline-block; width: 6px; height: 6px;
       background: #22c55e; border-radius: 50%; margin-right: 4px;
@@ -363,20 +321,13 @@
     }
     .today-hero .no-today { text-align: center; padding: 1rem; color: #4a5578; font-size: .85rem; }
 
-    /* ── Results ── */
     .results-stats { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
     .results-stats .rs-card {
       background: #141a2e; border: 1px solid #1e2a45; border-radius: 10px;
       padding: .75rem 1.25rem; text-align: center; flex: 1; min-width: 100px;
     }
-    .results-stats .rs-card .rs-num {
-      font-size: 1.4rem; font-weight: 700; color: #60a5fa;
-      animation: countUp .4s ease-out;
-    }
-    .results-stats .rs-card .rs-label {
-      font-size: .65rem; color: #4a5578; text-transform: uppercase; letter-spacing: .04em;
-      margin-top: .2rem;
-    }
+    .results-stats .rs-card .rs-num { font-size: 1.4rem; font-weight: 700; color: #60a5fa; animation: countUp .4s ease-out; }
+    .results-stats .rs-card .rs-label { font-size: .65rem; color: #4a5578; text-transform: uppercase; letter-spacing: .04em; margin-top: .2rem; }
     .result-card {
       display: flex; align-items: center; gap: 1rem;
       padding: .85rem 1.1rem;
@@ -385,91 +336,22 @@
       animation: fadeSlideIn .3s ease-out;
     }
     .result-card:hover { border-color: #2a3a6a; background: #131a2c; }
-    .result-card .rc-stage {
-      font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
-      color: #60a5fa; background: rgba(59,130,246,.1);
-      padding: .15rem .5rem; border-radius: 4px; min-width: 65px; text-align: center;
-    }
+    .result-card .rc-stage { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #60a5fa; background: rgba(59,130,246,.1); padding: .15rem .5rem; border-radius: 4px; min-width: 65px; text-align: center; }
     .result-card .rc-stage.knockout { background: rgba(251,146,60,.1); color: #fb923c; }
     .result-card .rc-stage.final-stage { background: rgba(250,204,21,.1); color: #eab308; }
-    .result-card .rc-teams {
-      flex: 1; display: flex; align-items: center; gap: .6rem;
-      font-size: .88rem; font-weight: 500;
-    }
+    .result-card .rc-teams { flex: 1; display: flex; align-items: center; gap: .6rem; font-size: .88rem; font-weight: 500; }
     .result-card .rc-teams .rc-flag { font-size: 1rem; }
     .result-card .rc-teams .rc-vs { color: #4a5578; font-size: .7rem; }
-    .result-card .rc-score {
-      font-size: 1.05rem; font-weight: 800; color: #34d399;
-      font-family: 'JetBrains Mono', monospace;
-      background: rgba(52,211,153,.08); padding: .15rem .7rem;
-      border-radius: 6px; min-width: 50px; text-align: center;
-    }
+    .result-card .rc-score { font-size: 1.05rem; font-weight: 800; color: #34d399; font-family: 'JetBrains Mono', monospace; background: rgba(52,211,153,.08); padding: .15rem .7rem; border-radius: 6px; min-width: 50px; text-align: center; }
     .result-card .rc-info { font-size: .7rem; color: #4a5578; text-align: right; white-space: nowrap; }
     .result-card.winner-team1 { border-left: 3px solid #34d399; }
     .result-card.winner-team2 { border-left: 3px solid #f59e0b; }
-
-    /* ── Group Standings ── */
-    .standings-container { animation: fadeSlideUp .35s ease-out; }
-    .standings-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 1rem;
-    }
-    .standings-group {
-      background: #101624; border: 1px solid #1a2038; border-radius: 12px;
-      overflow: hidden;
-    }
-    .standings-group h3 {
-      padding: .65rem 1rem;
-      font-size: .85rem; font-weight: 700; letter-spacing: .04em;
-      background: linear-gradient(135deg, #141a2e, #1a1f35);
-      border-bottom: 1px solid #1a2038;
-    }
-    .standings-group h3 .sg-color-dot {
-      display: inline-block; width: 8px; height: 8px; border-radius: 50%;
-      margin-right: .5rem;
-    }
-    .standings-table { width: 100%; border-collapse: collapse; }
-    .standings-table th {
-      padding: .4rem .5rem; font-size: .6rem; font-weight: 600;
-      color: #4a5578; text-transform: uppercase; letter-spacing: .06em;
-      text-align: center; border-bottom: 1px solid #1a2038;
-    }
-    .standings-table th:first-child { text-align: left; width: 40%; }
-    .standings-table td {
-      padding: .45rem .5rem; font-size: .78rem; color: #8892b0;
-      text-align: center; border-bottom: 1px solid #141a2e;
-    }
-    .standings-table td:first-child {
-      text-align: left; font-weight: 500; color: #e8edf5;
-      display: flex; align-items: center; gap: .4rem;
-    }
-    .standings-table tr:last-child td { border-bottom: none; }
-    .standings-table tr.qualify-zone td { color: #e8edf5; }
-    .standings-table tr.qualify-zone { background: rgba(59,130,246,.04); }
-    .standings-table tr.qualify-zone-3rd { background: rgba(251,146,60,.04); }
-    .standings-table .st-flag { font-size: .95rem; }
-    .standings-table .st-pos { font-weight: 700; font-size: .7rem; color: #4a5578; width: 20px; text-align: center; }
-    .standings-table .st-team { flex: 1; display: flex; align-items: center; gap: .4rem; }
-    .standings-table .st-pts { font-weight: 700; color: #60a5fa; font-size: .85rem; }
-    .standings-table .st-gd-pos { color: #34d399; }
-    .standings-table .st-gd-neg { color: #ef4444; }
-    .standings-table .st-gd-zero { color: #4a5578; }
-    .standings-table .qualify-badge {
-      font-size: .55rem; background: rgba(34,197,94,.15); color: #34d399;
-      padding: .05rem .35rem; border-radius: 3px; font-weight: 700; margin-left: .3rem;
-    }
-    .standings-table .qualify-badge.third {
-      background: rgba(251,146,60,.15); color: #fb923c;
-    }
 
     .no-results { text-align: center; padding: 3rem 1rem; color: #4a5578; }
     .no-results .big-icon { font-size: 3rem; margin-bottom: .5rem; display: block; }
     .no-results p { font-size: .9rem; }
 
-    .footer {
-      text-align: center; padding: 2rem 1.5rem; font-size: .75rem;
-      color: #2a3050; border-top: 1px solid #141a2e; margin-top: 2rem;
-    }
+    .footer { text-align: center; padding: 2rem 1.5rem; font-size: .75rem; color: #2a3050; border-top: 1px solid #141a2e; margin-top: 2rem; }
     .footer a { color: #4a5578; text-decoration: none; }
     .footer a:hover { color: #60a5fa; }
 
@@ -484,7 +366,6 @@
       .calendar-day { min-height: 60px; padding: .25rem; }
       .calendar-day .match-dot { font-size: .5rem; padding: .02rem .25rem; }
       .calendar-day .day-num { font-size: .7rem; }
-      .standings-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 480px) {
       .container { padding: .75rem; }
@@ -493,8 +374,6 @@
       .calendar-day { min-height: 45px; }
       .calendar-day .match-dot { display: none; }
       .calendar-day .match-count-badge { font-size: .55rem; top: 2px; right: 4px; }
-      .standings-table { font-size: .7rem; }
-      .standings-table td { padding: .35rem .3rem; }
     }
   </style>
 </head>
@@ -522,16 +401,13 @@
     <button data-view="today" id="todayTabBtn">🎯 Today</button>
     <button data-view="calendar">📅 Calendar</button>
     <button data-view="list">📋 List</button>
-    <button data-view="standings">🏆 Standings</button>
     <button data-view="results">✅ Results</button>
   </div>
 
-  <!-- Today View -->
   <div id="todayView" class="view-content" style="display:none">
     <div id="todayHero" class="today-hero"></div>
   </div>
 
-  <!-- Calendar View -->
   <div id="calendarView" class="view-content" style="display:none">
     <div class="calendar-nav">
       <button class="calendar-nav-btn" id="prevMonth">◀ Prev</button>
@@ -541,7 +417,6 @@
     <div id="calendarGrid" class="calendar-grid"></div>
   </div>
 
-  <!-- Filters & List View -->
   <div class="filters" id="filtersSection">
     <div class="filter-group">
       <label for="stageFilter">Stage</label>
@@ -576,12 +451,6 @@
     </div>
   </div>
 
-  <!-- Standings View -->
-  <div id="standingsView" class="view-content" style="display:none">
-    <div id="standingsContainer" class="standings-container"></div>
-  </div>
-
-  <!-- Results View -->
   <div id="resultsView" class="view-content" style="display:none">
     <div class="results-stats" id="resultsStats"></div>
     <div id="resultsList"></div>
@@ -594,14 +463,10 @@
 
 <footer class="footer">
   <p>Data sourced from FIFA &amp; Sky Sports. Times converted to <strong>Indian Standard Time (IST = UTC+5:30)</strong>.</p>
-  <p style="margin-top:.3rem;">Tournament simulated with seeded random generation based on team strength ratings.</p>
   <p style="margin-top:.3rem;">Built with ❤️ &mdash; <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026">Official FIFA Site</a></p>
 </footer>
 
 <script>
-// ═══════════════════════════════════════════════════════════════════
-//  FLAG EMOJI MAP
-// ═══════════════════════════════════════════════════════════════════
 const FLAGS = {
   'Mexico': '🇲🇽', 'South Africa': '🇿🇦', 'South Korea': '🇰🇷', 'Czech Republic': '🇨🇿',
   'Canada': '🇨🇦', 'Bosnia & Herzegovina': '🇧🇦', 'USA': '🇺🇸', 'Paraguay': '🇵🇾',
@@ -618,55 +483,9 @@ const FLAGS = {
 };
 function flg(name) { return FLAGS[name] || '⚽'; }
 
-// ═══════════════════════════════════════════════════════════════════
-//  MATCH DATA
-// ═══════════════════════════════════════════════════════════════════
-const TEAM_STRENGTHS = {
-  'Mexico': 78, 'South Africa': 52, 'South Korea': 58, 'Czech Republic': 55,
-  'Canada': 65, 'Bosnia & Herzegovina': 48, 'Qatar': 50, 'Switzerland': 72,
-  'Brazil': 92, 'Morocco': 67, 'Haiti': 32, 'Scotland': 46,
-  'USA': 72, 'Paraguay': 53, 'Australia': 56, 'Turkey': 60,
-  'Germany': 88, 'Curacao': 28, 'Ivory Coast': 58, 'Ecuador': 54,
-  'Netherlands': 84, 'Japan': 62, 'Sweden': 64, 'Tunisia': 48,
-  'Belgium': 82, 'Egypt': 56, 'Iran': 52, 'New Zealand': 44,
-  'Spain': 86, 'Cape Verde': 35, 'Saudi Arabia': 48, 'Uruguay': 70,
-  'France': 90, 'Senegal': 60, 'Iraq': 40, 'Norway': 58,
-  'Argentina': 91, 'Algeria': 56, 'Austria': 54, 'Jordan': 38,
-  'Portugal': 83, 'DR Congo': 46, 'Uzbekistan': 36, 'Colombia': 64,
-  'England': 87, 'Croatia': 66, 'Ghana': 54, 'Panama': 40,
-  'Group A RU': 0, 'Group B RU': 0, 'Group C W': 0, 'Group F RU': 0,
-  'Group E W': 0, 'Group F W': 0, 'Group C RU': 0, 'Group E RU': 0,
-  'Group I RU': 0, 'Group I W': 0, 'Group A W': 0, 'Group L W': 0,
-  'Group G W': 0, 'Group D W': 0, 'Group H W': 0, 'Group J RU': 0,
-  'Group K RU': 0, 'Group L RU': 0, 'Group B W': 0, 'Group D RU': 0,
-  'Group G RU': 0, 'Group J W': 0, 'Group H RU': 0, 'Group K W': 0,
-  'M73 W': 0, 'M75 W': 0, 'M74 W': 0, 'M77 W': 0,
-  'M76 W': 0, 'M78 W': 0, 'M79 W': 0, 'M80 W': 0,
-  'M83 W': 0, 'M84 W': 0, 'M81 W': 0, 'M82 W': 0,
-  'M86 W': 0, 'M88 W': 0, 'M85 W': 0, 'M87 W': 0,
-  'M89 W': 0, 'M90 W': 0, 'M93 W': 0, 'M94 W': 0,
-  'M91 W': 0, 'M92 W': 0, 'M95 W': 0, 'M96 W': 0,
-  'M97 W': 0, 'M98 W': 0, 'M99 W': 0, 'M100 W': 0,
-  'M101 Loser': 0, 'M102 Loser': 0, 'M101 W': 0, 'M102 W': 0,
-};
-
-const GROUP_LABELS = {
-  'Group A': 'A', 'Group B': 'B', 'Group C': 'C', 'Group D': 'D',
-  'Group E': 'E', 'Group F': 'F', 'Group G': 'G', 'Group H': 'H',
-  'Group I': 'I', 'Group J': 'J', 'Group K': 'K', 'Group L': 'L',
-};
-
-const GROUP_COLORS = {
-  'A': '#3b82f6', 'B': '#22c55e', 'C': '#ef4444', 'D': '#f59e0b',
-  'E': '#8b5cf6', 'F': '#ec4899', 'G': '#14b8a6', 'H': '#f97316',
-  'I': '#6366f1', 'J': '#84cc16', 'K': '#06b6d4', 'L': '#a855f7',
-};
-
-
-
 const MATCHES = [
-  { date:"2026-06-11", uk:"20:00", stage:"Group A", team1:"Mexico", team2:"South Africa", venue:"Estadio Azteca", city:"Mexico City", country:"🇲🇽" },
-  { date:"2026-06-12", uk:"03:00", stage:"Group A", team1:"South Korea", team2:"Czech Republic", venue:"Estadio Akron", city:"Zapopan", country:"🇲🇽" },
+  { date:"2026-06-11", uk:"20:00", stage:"Group A", team1:"Mexico", team2:"South Africa", venue:"Estadio Azteca", city:"Mexico City", country:"🇲🇽", result:"2-0" },
+  { date:"2026-06-12", uk:"03:00", stage:"Group A", team1:"South Korea", team2:"Czech Republic", venue:"Estadio Akron", city:"Zapopan", country:"🇲🇽", result:"2-1" },
   { date:"2026-06-12", uk:"20:00", stage:"Group B", team1:"Canada", team2:"Bosnia & Herzegovina", venue:"BMO Field", city:"Toronto", country:"🇨🇦" },
   { date:"2026-06-13", uk:"02:00", stage:"Group D", team1:"USA", team2:"Paraguay", venue:"SoFi Stadium", city:"Los Angeles", country:"🇺🇸" },
   { date:"2026-06-13", uk:"20:00", stage:"Group B", team1:"Qatar", team2:"Switzerland", venue:"Levi's Stadium", city:"Santa Clara", country:"🇺🇸" },
@@ -771,281 +590,11 @@ const MATCHES = [
   { date:"2026-07-19", uk:"20:00", stage:"Final", team1:"M101 W", team2:"M102 W", venue:"MetLife Stadium", city:"East Rutherford", country:"🇺🇸" },
 ];
 
-// ═══════════════════════════════════════════════════════════════════
-//  SEEDED RNG & SIMULATION ENGINE
-// ═══════════════════════════════════════════════════════════════════
-const SimRNG = (() => {
-  let seed = 2026;
-  return () => {
-    seed = (seed * 1664525 + 1013904223) | 0;
-    return (seed >>> 0) / 4294967296;
-  };
-})();
-
-function generateScore(s1, s2) {
-  const total = s1 + s2;
-  const exp1 = 2.4 * s1 / total;
-  const exp2 = 2.4 * s2 / total;
-  const g1 = Math.max(0, Math.round(exp1 + (SimRNG() - 0.5) * 1.4));
-  const g2 = Math.max(0, Math.round(exp2 + (SimRNG() - 0.5) * 1.4));
-  // Ensure draws are possible but not too frequent
-  if (g1 === g2 && SimRNG() < 0.25) {
-    return SimRNG() < 0.5 ? `${g1 + 1}-${g2}` : `${g1}-${g2 + 1}`;
-  }
-  return `${g1}-${g2}`;
-}
-
-function getStrength(team) {
-  if (TEAM_STRENGTHS[team] !== undefined) return TEAM_STRENGTHS[team];
-  // Try partial match for placeholder teams that have been resolved
-  return 50;
-}
-
-function parseScore(s) {
-  if (!s) return null;
-  const parts = s.split('-').map(Number);
-  return { g1: parts[0], g2: parts[1] };
-}
-
-// Knockout match index mapping: M73 = index 76 (0-based)
-function simulateTournament() {
-  // Deep clone matches so we can mutate them
-  const matches = MATCHES.map(m => ({ ...m }));
-
-  // Assign explicit match IDs to knockout matches
-  const koStages = ['Round of 32', 'Round of 16', 'Quarter-final', 'Semi-final'];
-  let mn = 73;
-  for (const stage of koStages) {
-    for (const m of matches) {
-      if (m.stage === stage) {
-        m.matchId = `M${mn++}`;
-      }
-    }
-  }
-  // Semi-finals: M101, M102 already assigned above
-  // Third Place and Final reference M101/M102
-  for (const m of matches) {
-    if (m.stage === 'Third Place') m.matchId = 'M103';
-    if (m.stage === 'Final') m.matchId = 'M104';
-  }
-
-  // Phase 1: Simulate all group stage matches
-  for (let i = 0; i < matches.length; i++) {
-    const m = matches[i];
-    if (m.stage.startsWith('Group') && !m.result) {
-      const s1 = getStrength(m.team1);
-      const s2 = getStrength(m.team2);
-      m.result = generateScore(s1, s2);
-    }
-  }
-
-  // Phase 2: Calculate group standings with W/D/L
-  const groups = {};
-  for (const m of matches) {
-    if (!m.stage.startsWith('Group')) continue;
-    const g = GROUP_LABELS[m.stage];
-    if (!groups[g]) groups[g] = {};
-    for (const team of [m.team1, m.team2]) {
-      if (!groups[g][team]) groups[g][team] = { pts: 0, gf: 0, ga: 0, gd: 0, mp: 0, w: 0, d: 0, l: 0 };
-    }
-    const sc = parseScore(m.result);
-    if (sc) {
-      groups[g][m.team1].mp++;
-      groups[g][m.team2].mp++;
-      groups[g][m.team1].gf += sc.g1;
-      groups[g][m.team1].ga += sc.g2;
-      groups[g][m.team2].gf += sc.g2;
-      groups[g][m.team2].ga += sc.g1;
-      groups[g][m.team1].gd = groups[g][m.team1].gf - groups[g][m.team1].ga;
-      groups[g][m.team2].gd = groups[g][m.team2].gf - groups[g][m.team2].ga;
-      if (sc.g1 > sc.g2) {
-        groups[g][m.team1].pts += 3;
-        groups[g][m.team1].w++;
-        groups[g][m.team2].l++;
-      } else if (sc.g2 > sc.g1) {
-        groups[g][m.team2].pts += 3;
-        groups[g][m.team2].w++;
-        groups[g][m.team1].l++;
-      } else {
-        groups[g][m.team1].pts += 1;
-        groups[g][m.team2].pts += 1;
-        groups[g][m.team1].d++;
-        groups[g][m.team2].d++;
-      }
-    }
-  }
-
-  // Sort each group
-  const sortedGroups = {};
-  const groupOrders = {};
-  for (const g of Object.keys(groups)) {
-    const teams = Object.entries(groups[g]);
-    teams.sort((a, b) => {
-      if (b[1].pts !== a[1].pts) return b[1].pts - a[1].pts;
-      if (b[1].gd !== a[1].gd) return b[1].gd - a[1].gd;
-      if (b[1].gf !== a[1].gf) return b[1].gf - a[1].gf;
-      return a[0].localeCompare(b[0]);
-    });
-    sortedGroups[g] = teams;
-  }
-
-  // Determine best 3rd-placed teams
-  const thirdPlaced = [];
-  for (const g of Object.keys(sortedGroups)) {
-    const teams = sortedGroups[g];
-    if (teams.length >= 3) {
-      const [team, stats] = teams[2];
-      thirdPlaced.push({ group: g, team, pts: stats.pts, gd: stats.gd, gf: stats.gf });
-    }
-  }
-  thirdPlaced.sort((a, b) => {
-    if (b.pts !== a.pts) return b.pts - a.pts;
-    if (b.gd !== a.gd) return b.gd - a.gd;
-    if (b.gf !== a.gf) return b.gf - a.gf;
-    return a.group.localeCompare(b.group);
-  });
-
-  // Mapping: group label -> { W, RU, 3rd }
-  const groupResults = {};
-  for (const g of Object.keys(sortedGroups)) {
-    const teams = sortedGroups[g];
-    groupResults[g] = {
-      W: teams[0] ? teams[0][0] : null,
-      RU: teams[1] ? teams[1][0] : null,
-      '3rd': teams[2] ? teams[2][0] : null,
-    };
-  }
-
-  // Best 3rd-placed teams (top 8 advance)
-  const bestThirdTeams = {};
-  thirdPlaced.slice(0, 8).forEach(t => {
-    bestThirdTeams[t.group] = t.team;
-  });
-
-  // Helper to resolve a team placeholder
-  function resolveTeam(placeholder) {
-    if (!placeholder) return placeholder;
-    // Direct group winners/runners-up
-    const groupMatch = placeholder.match(/^Group (\w) (W|RU)$/);
-    if (groupMatch) {
-      const grp = groupMatch[1];
-      const pos = groupMatch[2];
-      return groupResults[grp] ? groupResults[grp][pos] : placeholder;
-    }
-    // 3rd place qualifiers
-    const thirdMatch = placeholder.match(/^3rd ([A-Z])\/([A-Z])\/([A-Z])\/([A-Z])\/([A-Z])$/);
-    if (thirdMatch) {
-      // Pick the best 3rd from among these groups
-      const groups = [thirdMatch[1], thirdMatch[2], thirdMatch[3], thirdMatch[4], thirdMatch[5]];
-      let best = null;
-      let bestIdx = -1;
-      for (let i = 0; i < thirdPlaced.length; i++) {
-        if (groups.includes(thirdPlaced[i].group)) {
-          best = thirdPlaced[i].team;
-          bestIdx = i;
-          break;
-        }
-      }
-      return best || placeholder;
-    }
-    return placeholder; // unresolved for now
-  }
-
-  // Resolve Round of 32 team names
-  for (let i = 0; i < matches.length; i++) {
-    const m = matches[i];
-    if (m.stage !== 'Round of 32') continue;
-    m.team1 = resolveTeam(m.team1);
-    m.team2 = resolveTeam(m.team2);
-  }
-
-  // Phase 3: Simulate knockout rounds, resolving matches iteratively
-  let changed = true;
-  let iterations = 0;
-  while (changed && iterations < 20) {
-    changed = false;
-    iterations++;
-
-    // Collect all resolved knockout results: map placeholder -> winner/loser team name
-    const results = {};
-    for (const m of matches) {
-      if (!m.matchId || !m.result) continue;
-      const t1 = m.team1, t2 = m.team2;
-      if (t1.includes('Group') || t1.includes('3rd') || t2.includes('Group') || t2.includes('3rd')) continue;
-      if (t1.startsWith('M') || t2.startsWith('M')) continue;
-      const sc = parseScore(m.result);
-      if (!sc) continue;
-      let winner = sc.g1 > sc.g2 ? t1 : sc.g2 > sc.g1 ? t2 : null;
-      let loser = sc.g1 > sc.g2 ? t2 : sc.g2 > sc.g1 ? t1 : null;
-      if (!winner) {
-        // Draw -> penalties
-        winner = SimRNG() < 0.5 ? t1 : t2;
-        loser = winner === t1 ? t2 : t1;
-      }
-      results[`${m.matchId} W`] = winner;
-      results[`${m.matchId} Loser`] = loser;
-      TEAM_STRENGTHS[winner] = TEAM_STRENGTHS[winner] || 50;
-    }
-
-    // Resolve placeholders and generate results for ready matches
-    for (const m of matches) {
-      if (!m.matchId) continue;
-
-      // Resolve team placeholders
-      let newT1 = m.team1, newT2 = m.team2;
-      if (results[newT1]) { newT1 = results[newT1]; }
-      if (results[newT2]) { newT2 = results[newT2]; }
-      if (newT1 !== m.team1 || newT2 !== m.team2) {
-        changed = true;
-        m.team1 = newT1;
-        m.team2 = newT2;
-      }
-
-      // If resolved and no result yet, generate one
-      if (!m.result && !m.team1.includes('Group') && !m.team2.includes('Group') &&
-          !m.team1.includes('3rd') && !m.team1.includes('M') && !m.team2.includes('M') &&
-          !m.team1.includes('Loser') && !m.team2.includes('Loser')) {
-        const s1 = TEAM_STRENGTHS[m.team1] || 50;
-        const s2 = TEAM_STRENGTHS[m.team2] || 50;
-        m.result = generateScore(s1, s2);
-        changed = true;
-      }
-    }
-  }
-
-  // Final pass: resolve any remaining placeholders
-  for (let i = 0; i < matches.length; i++) {
-    const m = matches[i];
-    if (m.team1 && m.team1.startsWith('M') && m.team1.includes(' ')) {
-      // Still unresolved - assign a dummy team
-      m.team1 = m.team1.replace(/M\d+ (W|Loser)/, 'TBD Team');
-    }
-    if (m.team2 && m.team2.startsWith('M') && m.team2.includes(' ')) {
-      m.team2 = m.team2.replace(/M\d+ (W|Loser)/, 'TBD Team');
-    }
-  }
-
-  return { matches, sortedGroups, groupResults, bestThirdTeams, thirdPlaced };
-}
-
-// Run the simulation
-const SIM = simulateTournament();
-const SIMULATED = SIM.matches;
-const GROUP_STANDINGS = SIM.sortedGroups;
-const GROUP_RESULTS = SIM.groupResults;
-const BEST_THIRD = SIM.bestThirdTeams;
-const ALL_THIRD = SIM.thirdPlaced;
-
-// ═══════════════════════════════════════════════════════════════════
-//  RENDERING HELPERS
-// ═══════════════════════════════════════════════════════════════════
-
 function parseUKTime(dateStr, ukTime) {
   const [h, m] = ukTime.split(':').map(Number);
   const dt = new Date(dateStr + 'T00:00:00Z');
   return new Date(dt.getTime() + (h - 1) * 3600000 + m * 60000);
 }
-
 function formatIST(date) {
   const ist = new Date(date.getTime() + 5.5 * 3600000);
   const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
@@ -1057,42 +606,35 @@ function formatIST(date) {
   const mm = String(ist.getUTCMinutes()).padStart(2, '0');
   return { dateStr: `${day}, ${d} ${mon}`, timeStr: `${hh}:${mm}`, weekday: day };
 }
-
 function getStageClass(stage) {
   if (stage.startsWith('Group')) return '';
   if (stage === 'Round of 32' || stage === 'Round of 16') return 'knockout';
   return 'final-stage';
 }
-
 function getDotClass(stage) {
   if (stage.startsWith('Group')) return 'group';
   if (stage === 'Round of 32' || stage === 'Round of 16') return 'knockout';
   return 'final';
 }
-
 function dayName(dateStr) {
   const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   return days[new Date(dateStr + 'T12:00:00Z').getUTCDay()];
 }
-
 function formatDateLabel(dateStr) {
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const dt = new Date(dateStr + 'T12:00:00Z');
   return `${months[dt.getUTCMonth()]} ${dt.getUTCDate()}`;
 }
-
 function getISTDate(dateStr, ukTime) {
   const dt = parseUKTime(dateStr, ukTime);
   const ist = new Date(dt.getTime() + 5.5 * 3600000);
   return `${ist.getUTCFullYear()}-${String(ist.getUTCMonth()+1).padStart(2,'0')}-${String(ist.getUTCDate()).padStart(2,'0')}`;
 }
-
 function buildDateOptions(matches) {
   const dateSet = new Set();
   matches.forEach(m => dateSet.add(getISTDate(m.date, m.uk)));
   return [...dateSet].sort();
 }
-
 function buildMatchLookup(matches) {
   const lookup = {};
   matches.forEach(m => {
@@ -1103,29 +645,21 @@ function buildMatchLookup(matches) {
   return lookup;
 }
 
-// ═══════════════════════════════════════════════════════════════════
-//  TODAY VIEW
-// ═══════════════════════════════════════════════════════════════════
-
 function renderToday() {
   const hero = document.getElementById('todayHero');
   const now = new Date();
   const nowIST = new Date(now.getTime() + 5.5 * 3600000);
   const todayStr = `${nowIST.getUTCFullYear()}-${String(nowIST.getUTCMonth()+1).padStart(2,'0')}-${String(nowIST.getUTCDate()).padStart(2,'0')}`;
-
   const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const dayN = days[nowIST.getUTCDay()];
   const dateLabel = `${months[nowIST.getUTCMonth()]} ${nowIST.getUTCDate()}, ${nowIST.getUTCFullYear()}`;
-
-  const todayMatches = SIMULATED.filter(m => getISTDate(m.date, m.uk) === todayStr);
-
+  const todayMatches = MATCHES.filter(m => getISTDate(m.date, m.uk) === todayStr);
   let html = `<div class="today-head">
     <span class="today-badge">🎯 Today</span>
     <span class="today-date">${dayN}, ${dateLabel}</span>
     <span class="today-count">${todayMatches.length} match${todayMatches.length !== 1 ? 'es' : ''}</span>
   </div>`;
-
   if (todayMatches.length === 0) {
     html += `<div class="no-today">✨ No matches scheduled for today. Check the Calendar or List view for upcoming fixtures!</div>`;
   } else {
@@ -1153,32 +687,19 @@ function renderToday() {
   hero.innerHTML = html;
 }
 
-// ═══════════════════════════════════════════════════════════════════
-//  RESULTS VIEW
-// ═══════════════════════════════════════════════════════════════════
-
 function renderResults() {
   const resultsList = document.getElementById('resultsList');
   const statsEl = document.getElementById('resultsStats');
   const noRes = document.getElementById('noResultsResults');
-
-  const completed = SIMULATED.filter(m => !!m.result);
-
+  const completed = MATCHES.filter(m => !!m.result);
   statsEl.innerHTML = `
     <div class="rs-card"><div class="rs-num">${completed.length}</div><div class="rs-label">Completed</div></div>
-    <div class="rs-card"><div class="rs-num">${SIMULATED.length - completed.length}</div><div class="rs-label">Upcoming</div></div>
+    <div class="rs-card"><div class="rs-num">${MATCHES.length - completed.length}</div><div class="rs-label">Upcoming</div></div>
     <div class="rs-card"><div class="rs-num">${new Set(completed.map(m => m.stage)).size}</div><div class="rs-label">Stages</div></div>
   `;
-
-  if (completed.length === 0) {
-    resultsList.innerHTML = '';
-    noRes.style.display = 'block';
-    return;
-  }
+  if (completed.length === 0) { resultsList.innerHTML = ''; noRes.style.display = 'block'; return; }
   noRes.style.display = 'none';
-
   completed.sort((a, b) => parseUKTime(b.date, b.uk) - parseUKTime(a.date, a.uk));
-
   let html = '';
   completed.forEach(m => {
     const dt = parseUKTime(m.date, m.uk);
@@ -1200,63 +721,6 @@ function renderResults() {
   resultsList.innerHTML = html;
 }
 
-// ═══════════════════════════════════════════════════════════════════
-//  GROUP STANDINGS VIEW
-// ═══════════════════════════════════════════════════════════════════
-
-function renderStandings() {
-  const container = document.getElementById('standingsContainer');
-
-  const qualifiedThird = new Set(Object.entries(BEST_THIRD).map(([g, t]) => `${g}:${t}`));
-
-  let html = '<div class="standings-grid">';
-  const groupLetters = Object.keys(GROUP_STANDINGS).sort();
-  groupLetters.forEach(g => {
-    const teams = GROUP_STANDINGS[g];
-    const color = GROUP_COLORS[g] || '#3b82f6';
-    html += `<div class="standings-group">
-      <h3><span class="sg-color-dot" style="background:${color}"></span>Group ${g}</h3>
-      <table class="standings-table">
-        <thead><tr>
-          <th>Team</th><th>MP</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th>
-        </tr></thead>
-        <tbody>`;
-    teams.forEach(([team, stats], idx) => {
-      let cls = '';
-      let badge = '';
-      if (idx === 0 || idx === 1) {
-        cls = 'qualify-zone';
-        badge = '<span class="qualify-badge">R32</span>';
-      } else if (idx === 2 && qualifiedThird.has(`${g}:${team}`)) {
-        cls = 'qualify-zone-3rd';
-        badge = '<span class="qualify-badge third">3rd</span>';
-      }
-      const gdStr = stats.gd > 0 ? `+${stats.gd}` : `${stats.gd}`;
-      const gdCls = stats.gd > 0 ? 'st-gd-pos' : stats.gd < 0 ? 'st-gd-neg' : 'st-gd-zero';
-      const w = stats.w || 0, d = stats.d || 0, l = stats.l || 0;
-      html += `<tr class="${cls}">
-        <td><span class="st-pos">${idx + 1}</span><span class="st-flag">${flg(team)}</span><span class="st-team">${team}</span>${badge}</td>
-        <td>${stats.mp}</td>
-        <td>${w}</td>
-        <td>${d}</td>
-        <td>${l}</td>
-        <td>${stats.gf}</td>
-        <td>${stats.ga}</td>
-        <td class="${gdCls}">${gdStr}</td>
-        <td class="st-pts">${stats.pts}</td>
-      </tr>`;
-    });
-    html += `</tbody></table></div>`;
-  });
-  html += '</div>';
-
-  container.innerHTML = html;
-}
-
-// ═══════════════════════════════════════════════════════════════════
-//  CALENDAR VIEW
-// ═══════════════════════════════════════════════════════════════════
-
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 let currentMonth = 5;
@@ -1272,7 +736,7 @@ function renderCalendar() {
   const firstDay = new Date(Date.UTC(currentYear, currentMonth, 1));
   const daysInMonth = new Date(Date.UTC(currentYear, currentMonth + 1, 0)).getUTCDate();
   const startDow = firstDay.getUTCDay();
-  const matchLookup = buildMatchLookup(SIMULATED);
+  const matchLookup = buildMatchLookup(MATCHES);
   const now = new Date();
   const nowIST = new Date(now.getTime() + 5.5 * 3600000);
   const todayStr = `${nowIST.getUTCFullYear()}-${String(nowIST.getUTCMonth()+1).padStart(2,'0')}-${String(nowIST.getUTCDate()).padStart(2,'0')}`;
@@ -1321,11 +785,7 @@ function renderCalendar() {
   html += '</div>';
   grid.innerHTML = html;
   grid.querySelectorAll('.calendar-day.has-match').forEach(el => {
-    el.addEventListener('click', () => {
-      const date = el.dataset.date;
-      selectedDate = date;
-      switchToListView(date);
-    });
+    el.addEventListener('click', () => { selectedDate = el.dataset.date; switchToListView(el.dataset.date); });
   });
 }
 
@@ -1335,15 +795,10 @@ function switchToListView(date) {
   document.getElementById('todayView').style.display = 'none';
   document.getElementById('calendarView').style.display = 'none';
   document.getElementById('listView').style.display = 'block';
-  document.getElementById('standingsView').style.display = 'none';
   document.getElementById('resultsView').style.display = 'none';
   dateFilter.value = date;
   render();
 }
-
-// ═══════════════════════════════════════════════════════════════════
-//  LIST VIEW
-// ═══════════════════════════════════════════════════════════════════
 
 const calendarEl = document.getElementById('calendar');
 const noResultsEl = document.getElementById('noResults');
@@ -1357,7 +812,7 @@ function render() {
   const stageVal = stageFilter.value;
   const dateVal = dateFilter.value;
   const teamVal = teamSearch.value.toLowerCase().trim();
-  const filtered = SIMULATED.filter(m => {
+  const filtered = MATCHES.filter(m => {
     if (stageVal !== 'all') {
       if (stageVal === 'Group' && !m.stage.startsWith('Group')) return false;
       if (stageVal !== 'Group' && m.stage !== stageVal) return false;
@@ -1428,15 +883,11 @@ function render() {
   });
   if (selectedDate) {
     setTimeout(() => {
-      const header = document.querySelector(`.day-header`);
+      const header = document.querySelector('.day-header');
       if (header) header.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 100);
   }
 }
-
-// ═══════════════════════════════════════════════════════════════════
-//  VIEW TOGGLES
-// ═══════════════════════════════════════════════════════════════════
 
 document.querySelectorAll('.view-toggle button').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -1446,9 +897,7 @@ document.querySelectorAll('.view-toggle button').forEach(btn => {
     document.getElementById('todayView').style.display = 'none';
     document.getElementById('calendarView').style.display = 'none';
     document.getElementById('listView').style.display = 'none';
-    document.getElementById('standingsView').style.display = 'none';
     document.getElementById('resultsView').style.display = 'none';
-
     if (v === 'today') {
       document.getElementById('todayView').style.display = 'block';
       renderToday();
@@ -1462,9 +911,6 @@ document.querySelectorAll('.view-toggle button').forEach(btn => {
       teamSearch.value = '';
       stageFilter.value = 'all';
       render();
-    } else if (v === 'standings') {
-      document.getElementById('standingsView').style.display = 'block';
-      renderStandings();
     } else if (v === 'results') {
       document.getElementById('resultsView').style.display = 'block';
       renderResults();
@@ -1479,7 +925,6 @@ document.getElementById('prevMonth').addEventListener('click', () => {
   selectedDate = null;
   renderCalendar();
 });
-
 document.getElementById('nextMonth').addEventListener('click', () => {
   if (currentMonth === 6 && currentYear === 2026) return;
   currentMonth++;
@@ -1488,7 +933,7 @@ document.getElementById('nextMonth').addEventListener('click', () => {
   renderCalendar();
 });
 
-const dateOptions = buildDateOptions(SIMULATED);
+const dateOptions = buildDateOptions(MATCHES);
 dateOptions.forEach(d => {
   const opt = document.createElement('option');
   opt.value = d;
@@ -1499,30 +944,17 @@ dateOptions.forEach(d => {
 });
 
 stageFilter.addEventListener('change', render);
-dateFilter.addEventListener('change', () => {
-  selectedDate = dateFilter.value !== 'all' ? dateFilter.value : null;
-  render();
-});
-teamSearch.addEventListener('input', () => {
-  selectedDate = null; dateFilter.value = 'all'; render();
-});
-clearBtn.addEventListener('click', () => {
-  stageFilter.value = 'all'; dateFilter.value = 'all'; teamSearch.value = ''; selectedDate = null; render();
-});
+dateFilter.addEventListener('change', () => { selectedDate = dateFilter.value !== 'all' ? dateFilter.value : null; render(); });
+teamSearch.addEventListener('input', () => { selectedDate = null; dateFilter.value = 'all'; render(); });
+clearBtn.addEventListener('click', () => { stageFilter.value = 'all'; dateFilter.value = 'all'; teamSearch.value = ''; selectedDate = null; render(); });
 
-// Start on Today view by default
 document.getElementById('todayView').style.display = 'block';
 document.getElementById('calendarView').style.display = 'none';
 document.getElementById('listView').style.display = 'none';
-document.getElementById('standingsView').style.display = 'none';
 document.getElementById('resultsView').style.display = 'none';
 document.querySelector('[data-view="today"]').classList.add('active');
 document.querySelector('[data-view="calendar"]').classList.remove('active');
 renderToday();
-
-// ═══════════════════════════════════════════════════════════════════
-//  AUTO-REFRESH — re-renders Today view every 60s for live match detection
-// ═══════════════════════════════════════════════════════════════════
 
 setInterval(() => {
   const todayVisible = document.getElementById('todayView').style.display !== 'none';
