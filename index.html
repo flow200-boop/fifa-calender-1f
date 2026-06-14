@@ -418,7 +418,86 @@
     .ranking-card .rank-badge.silver { background: rgba(148,163,184,.12); color: #94a3b8; }
     .ranking-card .rank-badge.bronze { background: rgba(217,119,6,.12); color: #d97706; }
     .ranking-card .rank-badge.elite { background: rgba(59,130,246,.12); color: #60a5fa; }
+    .groups-header {
+      text-align: center; margin-bottom: 1.25rem;
+    }
+    .groups-title {
+      font-size: 1.3rem; font-weight: 700;
+      background: linear-gradient(135deg, #f0f4ff 0%, #60a5fa 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .groups-subtitle { font-size: .8rem; color: #4a5578; margin-top: .2rem; }
+    .groups-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem;
+    }
+    .group-card {
+      background: #101624; border: 1px solid #1a2038; border-radius: 12px;
+      overflow: hidden; animation: fadeSlideIn .3s ease-out; animation-fill-mode: both;
+    }
+    .group-card:hover { border-color: #2a3a6a; }
+    .group-card-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .75rem 1rem;
+      background: linear-gradient(135deg, #141a2e 0%, #1a1f35 100%);
+      border-bottom: 1px solid #1a2038;
+    }
+    .group-card-header .group-letter {
+      font-size: 1.1rem; font-weight: 800; color: #60a5fa;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .group-card-header .group-matches-played {
+      font-size: .65rem; color: #4a5578; background: rgba(255,255,255,.04);
+      padding: .15rem .5rem; border-radius: 4px;
+    }
+    .group-table {
+      width: 100%; border-collapse: collapse;
+    }
+    .group-table th {
+      font-size: .6rem; font-weight: 600; color: #4a5578; text-transform: uppercase;
+      letter-spacing: .04em; padding: .5rem .4rem; text-align: center;
+      border-bottom: 1px solid #1a2038;
+    }
+    .group-table th:nth-child(2) { text-align: left; }
+    .group-table td {
+      font-size: .75rem; padding: .5rem .4rem; text-align: center;
+      border-bottom: 1px solid rgba(26,32,56,.5); color: #8892b0;
+    }
+    .group-table td:nth-child(2) { text-align: left; font-weight: 500; color: #e8edf5; }
+    .group-table tr:last-child td { border-bottom: none; }
+    .group-table tr:hover td { background: rgba(255,255,255,.02); }
+    .group-table .team-pos {
+      font-family: 'JetBrains Mono', monospace; font-weight: 700;
+      min-width: 20px; display: inline-block;
+    }
+    .group-table .team-pos.pos-1 { color: #34d399; }
+    .group-table .team-pos.pos-2 { color: #60a5fa; }
+    .group-table .team-pos.pos-3 { color: #f59e0b; }
+    .group-table .team-pos.pos-4 { color: #ef4444; }
+    .group-table .team-cell {
+      display: flex; align-items: center; gap: .4rem;
+    }
+    .group-table .team-cell .team-flag-sm { font-size: .9rem; line-height: 1; }
+    .group-table .pts-col {
+      font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #e8edf5;
+      font-size: .8rem;
+    }
+    .group-table .gd-positive { color: #34d399; }
+    .group-table .gd-negative { color: #ef4444; }
+    .group-table .gd-zero { color: #4a5578; }
+    .group-legend {
+      display: flex; gap: .75rem; flex-wrap: wrap; padding: .5rem 1rem;
+      background: rgba(255,255,255,.02); border-top: 1px solid #1a2038;
+      font-size: .6rem; color: #4a5578;
+    }
+    .group-legend span { display: flex; align-items: center; gap: .3rem; }
+    .group-legend .legend-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+    }
+    .group-legend .legend-dot.qualified { background: #34d399; }
+    .group-legend .legend-dot.playoff { background: #60a5fa; }
+    .group-legend .legend-dot.eliminated { background: #ef4444; }
     @media (max-width: 768px) {
+      .groups-grid { grid-template-columns: 1fr; }
       .rankings-grid { grid-template-columns: 1fr; }
     }
 
@@ -474,6 +553,7 @@
     <button data-view="list">📋 List</button>
     <button data-view="results">✅ Results</button>
     <button data-view="rankings">🏆 Rankings</button>
+    <button data-view="groups">📊 Groups</button>
   </div>
 
   <div id="todayView" class="view-content" style="display:none">
@@ -528,6 +608,14 @@
       <span class="big-icon">🏟️</span>
       <p>No completed matches yet.</p>
     </div>
+  </div>
+
+  <div id="groupsView" class="view-content" style="display:none">
+    <div class="groups-header">
+      <h2 class="groups-title">📊 Group Standings</h2>
+      <p class="groups-subtitle">12 Groups · 4 Teams Each</p>
+    </div>
+    <div id="groupsList"></div>
   </div>
 
   <div id="rankingsView" class="view-content" style="display:none">
@@ -909,6 +997,7 @@ function switchToListView(date) {
   document.getElementById('listView').style.display = 'block';
   document.getElementById('resultsView').style.display = 'none';
   document.getElementById('rankingsView').style.display = 'none';
+  document.getElementById('groupsView').style.display = 'none';
   dateFilter.value = date;
   render();
 }
@@ -1012,6 +1101,7 @@ document.querySelectorAll('.view-toggle button').forEach(btn => {
     document.getElementById('listView').style.display = 'none';
     document.getElementById('resultsView').style.display = 'none';
     document.getElementById('rankingsView').style.display = 'none';
+    document.getElementById('groupsView').style.display = 'none';
     if (v === 'today') {
       document.getElementById('todayView').style.display = 'block';
       renderToday();
@@ -1031,6 +1121,9 @@ document.querySelectorAll('.view-toggle button').forEach(btn => {
     } else if (v === 'rankings') {
       document.getElementById('rankingsView').style.display = 'block';
       renderRankings();
+    } else if (v === 'groups') {
+      document.getElementById('groupsView').style.display = 'block';
+      renderGroups();
     }
   });
 });
@@ -1070,6 +1163,7 @@ document.getElementById('calendarView').style.display = 'none';
 document.getElementById('listView').style.display = 'none';
 document.getElementById('resultsView').style.display = 'none';
 document.getElementById('rankingsView').style.display = 'none';
+document.getElementById('groupsView').style.display = 'none';
 document.querySelector('[data-view="today"]').classList.add('active');
 document.querySelector('[data-view="calendar"]').classList.remove('active');
 renderToday();
@@ -1122,6 +1216,112 @@ function renderRankings() {
 
 rankingSearch.addEventListener('input', renderRankings);
 rankingSort.addEventListener('change', renderRankings);
+
+const GROUP_TEAMS = {
+  'A': ['Mexico', 'South Africa', 'South Korea', 'Czech Republic'],
+  'B': ['Canada', 'Bosnia & Herzegovina', 'Qatar', 'Switzerland'],
+  'C': ['Brazil', 'Morocco', 'Haiti', 'Scotland'],
+  'D': ['USA', 'Paraguay', 'Australia', 'Turkey'],
+  'E': ['Germany', 'Curacao', 'Ivory Coast', 'Ecuador'],
+  'F': ['Netherlands', 'Japan', 'Sweden', 'Tunisia'],
+  'G': ['Belgium', 'Egypt', 'Iran', 'New Zealand'],
+  'H': ['Spain', 'Cape Verde', 'Saudi Arabia', 'Uruguay'],
+  'I': ['France', 'Senegal', 'Iraq', 'Norway'],
+  'J': ['Argentina', 'Algeria', 'Austria', 'Jordan'],
+  'K': ['Portugal', 'DR Congo', 'Uzbekistan', 'Colombia'],
+  'L': ['England', 'Croatia', 'Ghana', 'Panama'],
+};
+
+function calcGroupStandings() {
+  const standings = {};
+  Object.keys(GROUP_TEAMS).forEach(letter => {
+    standings[letter] = {};
+    GROUP_TEAMS[letter].forEach(team => {
+      standings[letter][team] = { mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 };
+    });
+  });
+  MATCHES.filter(m => m.result && m.stage.startsWith('Group')).forEach(m => {
+    const letter = m.stage.replace('Group ', '');
+    if (!standings[letter]) return;
+    const [g1, g2] = m.result.split('-').map(Number);
+    const t1 = standings[letter][m.team1];
+    const t2 = standings[letter][m.team2];
+    if (!t1 || !t2) return;
+    t1.mp++; t2.mp++;
+    t1.gf += g1; t1.ga += g2;
+    t2.gf += g2; t2.ga += g1;
+    if (g1 > g2) { t1.w++; t2.l++; t1.pts += 3; }
+    else if (g1 < g2) { t2.w++; t1.l++; t2.pts += 3; }
+    else { t1.d++; t2.d++; t1.pts += 1; t2.pts += 1; }
+    t1.gd = t1.gf - t1.ga;
+    t2.gd = t2.gf - t2.ga;
+  });
+  Object.keys(standings).forEach(letter => {
+    standings[letter] = Object.entries(standings[letter])
+      .map(([name, s]) => ({ name, ...s }))
+      .sort((a, b) => b.pts - a.pts || b.gd - a.gd || b.gf - a.gf || a.name.localeCompare(b.name));
+  });
+  return standings;
+}
+
+function renderGroups() {
+  const listEl = document.getElementById('groupsList');
+  const standings = calcGroupStandings();
+  const letters = Object.keys(standings).sort();
+  let html = '<div class="groups-grid">';
+  letters.forEach((letter, idx) => {
+    const teams = standings[letter];
+    const matchesPlayed = teams.length > 0 ? teams[0].mp : 0;
+    html += `<div class="group-card" style="animation-delay:${Math.min(idx * 0.05, 0.5).toFixed(2)}s">
+      <div class="group-card-header">
+        <span class="group-letter">Group ${letter}</span>
+        <span class="group-matches-played">${matchesPlayed}/6 matches</span>
+      </div>
+      <table class="group-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Team</th>
+            <th>MP</th>
+            <th>W</th>
+            <th>D</th>
+            <th>L</th>
+            <th>GF</th>
+            <th>GA</th>
+            <th>GD</th>
+            <th>PTS</th>
+          </tr>
+        </thead>
+        <tbody>`;
+    teams.forEach((t, i) => {
+      const pos = i + 1;
+      const posCls = pos <= 2 ? 'pos-' + pos : pos === 3 ? 'pos-3' : 'pos-4';
+      const gdCls = t.gd > 0 ? 'gd-positive' : t.gd < 0 ? 'gd-negative' : 'gd-zero';
+      const gdStr = t.gd > 0 ? '+' + t.gd : String(t.gd);
+      html += `<tr>
+        <td><span class="team-pos ${posCls}">${pos}</span></td>
+        <td><div class="team-cell"><span class="team-flag-sm">${flg(t.name)}</span> ${t.name}</div></td>
+        <td>${t.mp}</td>
+        <td>${t.w}</td>
+        <td>${t.d}</td>
+        <td>${t.l}</td>
+        <td>${t.gf}</td>
+        <td>${t.ga}</td>
+        <td class="${gdCls}">${gdStr}</td>
+        <td class="pts-col">${t.pts}</td>
+      </tr>`;
+    });
+    html += `</tbody></table>
+      <div class="group-legend">
+        <span><span class="legend-dot qualified"></span> Qualified (1st-2nd)</span>
+        <span><span class="legend-dot playoff"></span> Playoff (3rd)</span>
+        <span><span class="legend-dot eliminated"></span> Eliminated (4th)</span>
+      </div>
+    </div>`;
+  });
+  html += '</div>';
+  listEl.innerHTML = html;
+}
 
 setInterval(() => {
   const todayVisible = document.getElementById('todayView').style.display !== 'none';
