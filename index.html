@@ -262,6 +262,13 @@
     .match-teams { flex: 1; display: flex; align-items: center; gap: .6rem; font-size: .88rem; font-weight: 500; flex-wrap: wrap; }
     .match-teams .team-flag { font-size: 1.1rem; line-height: 1; }
     .match-teams .vs { color: #4a5578; font-size: .7rem; font-weight: 400; }
+    .team-rank {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: .55rem; font-weight: 700; color: #60a5fa; background: rgba(59,130,246,.12);
+      min-width: 18px; height: 18px; padding: 0 .3rem; border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace; line-height: 1;
+      vertical-align: middle;
+    }
     .match-result { margin-left: .3rem; font-size: .8rem; font-weight: 700; color: #34d399; white-space: nowrap; }
     .match-info { display: flex; align-items: center; gap: 1rem; font-size: .78rem; color: #8892b0; white-space: nowrap; flex-shrink: 0; }
     .match-info .ist-time {
@@ -483,6 +490,20 @@ const FLAGS = {
 };
 function flg(name) { return FLAGS[name] || '⚽'; }
 
+const RANKINGS = {
+  'Argentina': 1, 'Spain': 2, 'France': 3, 'England': 4, 'Portugal': 5,
+  'Brazil': 6, 'Morocco': 7, 'Netherlands': 8, 'Belgium': 9, 'Germany': 10,
+  'Croatia': 11, 'Colombia': 12, 'Mexico': 13, 'Senegal': 14, 'Uruguay': 15,
+  'USA': 16, 'Japan': 17, 'Switzerland': 18, 'Iran': 19, 'Norway': 20,
+  'Scotland': 21, 'Austria': 22, 'Qatar': 23, 'South Korea': 24, 'Tunisia': 25,
+  'Algeria': 26, 'Saudi Arabia': 27, 'Australia': 28, 'Egypt': 29, 'Ecuador': 30,
+  'South Africa': 31, 'Panama': 32, 'Uzbekistan': 33, 'Iraq': 34, 'Canada': 35,
+  'Jordan': 36, 'Bosnia & Herzegovina': 37, 'Turkey': 38, 'DR Congo': 39,
+  'Czech Republic': 40, 'Haiti': 41, 'Sweden': 42, 'Curacao': 43,
+  'Cape Verde': 44, 'New Zealand': 45, 'Ivory Coast': 46, 'Ghana': 47,
+  'Paraguay': 48,
+};
+
 const MATCHES = [
   { date:"2026-06-11", uk:"20:00", stage:"Group A", team1:"Mexico", team2:"South Africa", venue:"Estadio Azteca", city:"Mexico City", country:"🇲🇽", result:"2-0" },
   { date:"2026-06-12", uk:"03:00", stage:"Group A", team1:"South Korea", team2:"Czech Republic", venue:"Estadio Akron", city:"Zapopan", country:"🇲🇽", result:"2-1" },
@@ -677,7 +698,7 @@ function renderToday() {
       const stageBg = sc === 'final-stage' ? 'rgba(250,204,21,.1);color:#eab308' : sc === 'knockout' ? 'rgba(251,146,60,.1);color:#fb923c' : 'rgba(59,130,246,.1);color:#60a5fa';
       html += `<div class="${cls}">
         <span class="tm-time">${isLive ? '<span class="tm-live-dot"></span>' : ''}${ist.timeStr} IST</span>
-        <span class="tm-teams"><span class="tm-team-flag">${flg(m.team1)}</span> ${m.team1} <span class="tm-vs">vs</span> <span class="tm-team-flag">${flg(m.team2)}</span> ${m.team2}</span>
+        <span class="tm-teams"><span class="tm-team-flag">${flg(m.team1)}</span> ${m.team1} <span class="team-rank">${RANKINGS[m.team1] || ''}</span> <span class="tm-vs">vs</span> <span class="tm-team-flag">${flg(m.team2)}</span> ${m.team2} <span class="team-rank">${RANKINGS[m.team2] || ''}</span></span>
         <span class="tm-stage" style="background:${stageBg}">${m.stage.replace('Group ','')}</span>
         <span class="tm-venue">${m.country} ${m.city}</span>
       </div>`;
@@ -710,9 +731,9 @@ function renderResults() {
     html += `<div class="result-card ${wCls}">
       <span class="rc-stage ${stageCls}">${m.stage}</span>
       <div class="rc-teams">
-        <span class="rc-flag">${flg(m.team1)}</span><span>${m.team1}</span>
+        <span class="rc-flag">${flg(m.team1)}</span><span>${m.team1}</span> <span class="team-rank">${RANKINGS[m.team1] || ''}</span>
         <span class="rc-vs">vs</span>
-        <span class="rc-flag">${flg(m.team2)}</span><span>${m.team2}</span>
+        <span class="rc-flag">${flg(m.team2)}</span><span>${m.team2}</span> <span class="team-rank">${RANKINGS[m.team2] || ''}</span>
       </div>
       <span class="rc-score">${m.result}</span>
       <div class="rc-info">${ist.dateStr} · ${m.country} ${m.city}</div>
@@ -864,9 +885,9 @@ function render() {
       html += `<div class="match-card${hasResult || isPast ? ' finished' : ''}">
         <span class="match-stage ${stageClass}">${m.stage}</span>
         <div class="match-teams">
-          <span class="team-flag">${flg(m.team1)}</span><span>${m.team1}</span>
+          <span class="team-flag">${flg(m.team1)}</span><span>${m.team1}</span> <span class="team-rank">${RANKINGS[m.team1] || ''}</span>
           <span class="vs">vs</span>
-          <span class="team-flag">${flg(m.team2)}</span><span>${m.team2}</span>
+          <span class="team-flag">${flg(m.team2)}</span><span>${m.team2}</span> <span class="team-rank">${RANKINGS[m.team2] || ''}</span>
           ${hasResult ? `<span class="match-result">${m.result}</span>` : ''}
         </div>
         <div class="match-info">
