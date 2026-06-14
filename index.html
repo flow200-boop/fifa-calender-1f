@@ -358,6 +358,70 @@
     .no-results .big-icon { font-size: 3rem; margin-bottom: .5rem; display: block; }
     .no-results p { font-size: .9rem; }
 
+    .rankings-header {
+      text-align: center; margin-bottom: 1.25rem;
+    }
+    .rankings-title {
+      font-size: 1.3rem; font-weight: 700;
+      background: linear-gradient(135deg, #f0f4ff 0%, #60a5fa 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .rankings-subtitle { font-size: .8rem; color: #4a5578; margin-top: .2rem; }
+    .rankings-filters {
+      display: flex; gap: .75rem; margin-bottom: 1.25rem; flex-wrap: wrap; align-items: center;
+    }
+    .rankings-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: .5rem;
+    }
+    .ranking-card {
+      display: flex; align-items: center; gap: .75rem;
+      padding: .65rem .9rem;
+      background: #101624; border: 1px solid #1a2038; border-radius: 10px;
+      transition: all .2s; animation: fadeSlideIn .3s ease-out; animation-fill-mode: both;
+      position: relative; overflow: hidden;
+    }
+    .ranking-card:hover { border-color: #2a3a6a; background: #131a2c; transform: translateY(-1px); }
+    .ranking-card .rank-num {
+      font-family: 'JetBrains Mono', monospace; font-size: .75rem; font-weight: 700;
+      min-width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+      border-radius: 6px; flex-shrink: 0;
+      background: rgba(59,130,246,.1); color: #60a5fa;
+    }
+    .ranking-card .rank-num.top-10 {
+      background: rgba(234,179,8,.12); color: #eab308;
+    }
+    .ranking-card .rank-num.top-3 {
+      background: rgba(234,179,8,.18); color: #fbbf24;
+      box-shadow: 0 0 8px rgba(234,179,8,.15);
+    }
+    .ranking-card .rank-flag { font-size: 1.3rem; line-height: 1; flex-shrink: 0; }
+    .ranking-card .rank-info { flex: 1; min-width: 0; }
+    .ranking-card .rank-name {
+      font-size: .85rem; font-weight: 600; color: #e8edf5;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .ranking-card .rank-bar-track {
+      height: 3px; background: #1e2a45; border-radius: 2px; margin-top: .35rem; overflow: hidden;
+    }
+    .ranking-card .rank-bar {
+      height: 100%; border-radius: 2px; transition: width .4s ease-out;
+      background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    }
+    .ranking-card .rank-bar.top-bar {
+      background: linear-gradient(90deg, #eab308, #fbbf24);
+    }
+    .ranking-card .rank-badge {
+      font-size: .6rem; font-weight: 700; padding: .15rem .45rem; border-radius: 4px;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .ranking-card .rank-badge.gold { background: rgba(234,179,8,.15); color: #eab308; }
+    .ranking-card .rank-badge.silver { background: rgba(148,163,184,.12); color: #94a3b8; }
+    .ranking-card .rank-badge.bronze { background: rgba(217,119,6,.12); color: #d97706; }
+    .ranking-card .rank-badge.elite { background: rgba(59,130,246,.12); color: #60a5fa; }
+    @media (max-width: 768px) {
+      .rankings-grid { grid-template-columns: 1fr; }
+    }
+
     .footer { text-align: center; padding: 2rem 1.5rem; font-size: .75rem; color: #2a3050; border-top: 1px solid #141a2e; margin-top: 2rem; }
     .footer a { color: #4a5578; text-decoration: none; }
     .footer a:hover { color: #60a5fa; }
@@ -409,6 +473,7 @@
     <button data-view="calendar">📅 Calendar</button>
     <button data-view="list">📋 List</button>
     <button data-view="results">✅ Results</button>
+    <button data-view="rankings">🏆 Rankings</button>
   </div>
 
   <div id="todayView" class="view-content" style="display:none">
@@ -456,14 +521,40 @@
       <span class="big-icon">🔍</span>
       <p>No matches found. Try different filters.</p>
     </div>
-  </div>
-
-  <div id="resultsView" class="view-content" style="display:none">
+  </div>    <div id="resultsView" class="view-content" style="display:none">
     <div class="results-stats" id="resultsStats"></div>
     <div id="resultsList"></div>
     <div class="no-results" id="noResultsResults" style="display:none">
       <span class="big-icon">🏟️</span>
       <p>No completed matches yet.</p>
+    </div>
+  </div>
+
+  <div id="rankingsView" class="view-content" style="display:none">
+    <div class="rankings-header">
+      <h2 class="rankings-title">🏆 FIFA World Rankings</h2>
+      <p class="rankings-subtitle">48 Qualified Teams</p>
+    </div>
+    <div class="rankings-count" id="rankingsCount" style="margin-bottom:.75rem;text-align:center;font-size:.8rem;color:#8892b0;">Showing <strong style="color:#60a5fa">48</strong> teams</div>
+    <div class="rankings-filters">
+      <div class="filter-group">
+        <label for="rankingSearch">🔍 Search</label>
+        <input type="text" id="rankingSearch" placeholder="Search teams..." />
+      </div>
+      <div class="filter-group">
+        <label for="rankingSort">Sort</label>
+        <select id="rankingSort">
+          <option value="rank-asc">Rank: Low → High</option>
+          <option value="rank-desc">Rank: High → Low</option>
+          <option value="name-asc">Name: A → Z</option>
+          <option value="name-desc">Name: Z → A</option>
+        </select>
+      </div>
+    </div>
+    <div id="rankingsList"></div>
+    <div class="no-results" id="noResultsRankings" style="display:none">
+      <span class="big-icon">🔍</span>
+      <p>No teams match your search.</p>
     </div>
   </div>
 </div>
@@ -817,6 +908,7 @@ function switchToListView(date) {
   document.getElementById('calendarView').style.display = 'none';
   document.getElementById('listView').style.display = 'block';
   document.getElementById('resultsView').style.display = 'none';
+  document.getElementById('rankingsView').style.display = 'none';
   dateFilter.value = date;
   render();
 }
@@ -919,6 +1011,7 @@ document.querySelectorAll('.view-toggle button').forEach(btn => {
     document.getElementById('calendarView').style.display = 'none';
     document.getElementById('listView').style.display = 'none';
     document.getElementById('resultsView').style.display = 'none';
+    document.getElementById('rankingsView').style.display = 'none';
     if (v === 'today') {
       document.getElementById('todayView').style.display = 'block';
       renderToday();
@@ -935,6 +1028,9 @@ document.querySelectorAll('.view-toggle button').forEach(btn => {
     } else if (v === 'results') {
       document.getElementById('resultsView').style.display = 'block';
       renderResults();
+    } else if (v === 'rankings') {
+      document.getElementById('rankingsView').style.display = 'block';
+      renderRankings();
     }
   });
 });
@@ -973,9 +1069,59 @@ document.getElementById('todayView').style.display = 'block';
 document.getElementById('calendarView').style.display = 'none';
 document.getElementById('listView').style.display = 'none';
 document.getElementById('resultsView').style.display = 'none';
+document.getElementById('rankingsView').style.display = 'none';
 document.querySelector('[data-view="today"]').classList.add('active');
 document.querySelector('[data-view="calendar"]').classList.remove('active');
 renderToday();
+
+const rankingSearch = document.getElementById('rankingSearch');
+const rankingSort = document.getElementById('rankingSort');
+
+function renderRankings() {
+  const listEl = document.getElementById('rankingsList');
+  const noRes = document.getElementById('noResultsRankings');
+  const searchVal = rankingSearch.value.toLowerCase().trim();
+  const sortVal = rankingSort.value;
+  let teams = Object.entries(RANKINGS).map(([name, rank]) => ({ name, rank }));
+  if (searchVal) {
+    teams = teams.filter(t => t.name.toLowerCase().includes(searchVal));
+  }
+  if (sortVal === 'rank-asc') teams.sort((a, b) => a.rank - b.rank);
+  else if (sortVal === 'rank-desc') teams.sort((a, b) => b.rank - a.rank);
+  else if (sortVal === 'name-asc') teams.sort((a, b) => a.name.localeCompare(b.name));
+  else if (sortVal === 'name-desc') teams.sort((a, b) => b.name.localeCompare(a.name));
+  const countEl = document.getElementById('rankingsCount');
+  if (countEl) countEl.innerHTML = `Showing <strong style="color:#60a5fa">${teams.length}</strong> team${teams.length !== 1 ? 's' : ''}`;
+  if (teams.length === 0) { listEl.innerHTML = ''; noRes.style.display = 'block'; return; }
+  noRes.style.display = 'none';
+  const maxRank = Math.max(...Object.values(RANKINGS));
+  let html = '<div class="rankings-grid">';
+  teams.forEach((t, i) => {
+    const barPct = ((maxRank - t.rank + 1) / maxRank * 100).toFixed(1);
+    const isTop3 = t.rank <= 3;
+    const isTop10 = t.rank <= 10 && !isTop3;
+    const rankCls = isTop3 ? 'top-3' : isTop10 ? 'top-10' : '';
+    let badge = '';
+    if (isTop3) badge = '<span class="rank-badge gold">TOP 3</span>';
+    else if (isTop10) badge = '<span class="rank-badge silver">TOP 10</span>';
+    else if (t.rank <= 20) badge = '<span class="rank-badge bronze">TOP 20</span>';
+    else if (t.rank <= 32) badge = '<span class="rank-badge elite">TOP 32</span>';
+    html += `<div class="ranking-card" style="animation-delay:${Math.min(i * 0.02, 0.6).toFixed(2)}s">
+      <span class="rank-num ${rankCls}">#${t.rank}</span>
+      <span class="rank-flag">${flg(t.name)}</span>
+      <div class="rank-info">
+        <div class="rank-name">${t.name}</div>
+        <div class="rank-bar-track"><div class="rank-bar ${isTop3 || isTop10 ? 'top-bar' : ''}" style="width:${barPct}%"></div></div>
+      </div>
+      ${badge}
+    </div>`;
+  });
+  html += '</div>';
+  listEl.innerHTML = html;
+}
+
+rankingSearch.addEventListener('input', renderRankings);
+rankingSort.addEventListener('change', renderRankings);
 
 setInterval(() => {
   const todayVisible = document.getElementById('todayView').style.display !== 'none';
