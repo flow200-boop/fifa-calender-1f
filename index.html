@@ -1300,7 +1300,7 @@ function renderGroups() {
       const gdStr = t.gd > 0 ? '+' + t.gd : String(t.gd);
       html += `<tr>
         <td><span class="team-pos ${posCls}">${pos}</span></td>
-        <td><div class="team-cell"><span class="team-flag-sm">${flg(t.name)}</span> ${t.name}</div></td>
+        <td><div class="team-cell"><span class="team-flag-sm">${flg(t.name)}</span> ${t.name} <span class="team-rank">${RANKINGS[t.name] || ''}</span></div></td>
         <td>${t.mp}</td>
         <td>${t.w}</td>
         <td>${t.d}</td>
