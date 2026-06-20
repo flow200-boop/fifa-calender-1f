@@ -566,6 +566,193 @@
     .bk-gflag .bk-gf-letter{font-size:.55rem;font-weight:700;color:#2563eb;display:block;margin-bottom:.15rem;font-family:'JetBrains Mono',monospace}
     .bk-gflag .bk-gf-flag{font-size:1.1rem}
     @media(max-width:768px){.bk-side{grid-template-columns:140px 16px 140px 16px 140px 16px 140px}.bk-t{font-size:.63rem;padding:3px 5px}.bk-bracket{min-width:auto}}
+
+    /* === 🎨 Vibrant Color Palette === */
+
+    /* Header - Rich blue-to-emerald gradient */
+    .header {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 40%, #047857 100%) !important;
+      border-bottom: 3px solid #1e40af;
+    }
+    .header::before {
+      background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,.1) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 50%, rgba(255,255,255,.08) 0%, transparent 60%) !important;
+    }
+    .header-badge {
+      background: rgba(255,255,255,.15) !important;
+      border-color: rgba(255,255,255,.3) !important;
+      color: #ffffff !important;
+    }
+    .header h1 {
+      background: none !important;
+      -webkit-background-clip: unset !important;
+      -webkit-text-fill-color: unset !important;
+      color: #ffffff !important;
+      text-shadow: 0 2px 8px rgba(0,0,0,.2);
+    }
+    .header-sub { color: rgba(255,255,255,.8) !important; }
+    .header-sub strong { color: #ffffff !important; }
+    .header-sub .ist-badge { background: rgba(255,255,255,.2) !important; color: #ffffff !important; }
+    .stats-bar { color: rgba(255,255,255,.7) !important; }
+    .stats-bar strong { color: #ffffff !important; }
+
+    /* Scrollbar - Colored thumb */
+    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #3b82f6, #10b981); border-radius: 3px; }
+
+    /* View Toggle - Vibrant active state */
+    .view-toggle button:hover { color: #1e293b !important; background: rgba(37,99,235,.06); }
+    .view-toggle button.active {
+      background: linear-gradient(135deg, #2563eb, #3b82f6) !important;
+      color: #ffffff !important;
+      box-shadow: 0 2px 8px rgba(37,99,235,.3) !important;
+    }
+
+    /* Calendar */
+    .calendar-nav-btn:hover { background: #eff6ff; }
+    .calendar-weekdays { background: linear-gradient(180deg, #eff6ff, #f1f5f9) !important; }
+    .calendar-day.today { background: rgba(37,99,235,.1) !important; border-radius: 6px; }
+    .match-count-badge { background: linear-gradient(135deg, #3b82f6, #2563eb) !important; color: #ffffff !important; }
+
+    /* Day Headers - Blue accent */
+    .day-header {
+      background: linear-gradient(135deg, #eff6ff 0%, #e0f2fe 100%) !important;
+      border-left: 3px solid #3b82f6;
+    }
+    .day-header:hover { background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%) !important; }
+    .day-date { color: #1d4ed8 !important; }
+
+    /* Match Cards - Colored hover & live */
+    .match-card { border-left: 3px solid transparent; }
+    .match-card:hover {
+      border-color: #93c5fd !important;
+      border-left-color: #3b82f6 !important;
+      background: #f0f9ff !important;
+      box-shadow: 0 4px 16px rgba(37,99,235,.1);
+    }
+    .match-card.live {
+      border-left-color: #10b981 !important;
+      box-shadow: 0 0 0 3px rgba(16,185,129,.12), 0 4px 12px rgba(16,185,129,.1) !important;
+    }
+
+    /* Stage Badges - Gradient & vibrant */
+    .match-stage {
+      background: linear-gradient(135deg, rgba(37,99,235,.12), rgba(59,130,246,.06)) !important;
+      color: #1d4ed8 !important;
+    }
+    .match-stage.knockout {
+      background: linear-gradient(135deg, rgba(249,115,22,.12), rgba(234,88,12,.06)) !important;
+      color: #c2410c !important;
+    }
+    .match-stage.final-stage {
+      background: linear-gradient(135deg, rgba(245,158,11,.15), rgba(217,119,6,.08)) !important;
+      color: #b45309 !important;
+    }
+
+    /* IST Time & Result - Vibrant green */
+    .ist-time { background: rgba(16,185,129,.1) !important; color: #047857 !important; font-weight: 600; }
+    .match-result { color: #047857 !important; font-weight: 700; }
+    .team-rank { background: rgba(37,99,235,.1) !important; color: #1d4ed8 !important; }
+
+    /* Today Hero - Rich gradient */
+    .today-hero {
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 50%, #dbeafe 100%) !important;
+      border: 1px solid #6ee7b7 !important;
+      border-left: 4px solid #10b981;
+    }
+    .today-badge { background: linear-gradient(135deg, #10b981, #059669) !important; }
+    .today-match:hover { box-shadow: 0 2px 8px rgba(16,185,129,.1); }
+
+    /* Results Stats - Colored borders */
+    .results-stats .rs-card { transition: all .2s; border-left: 3px solid #d1d5db; }
+    .results-stats .rs-card:nth-child(1) { border-left-color: #3b82f6; }
+    .results-stats .rs-card:nth-child(2) { border-left-color: #f97316; }
+    .results-stats .rs-card:nth-child(3) { border-left-color: #10b981; }
+    .results-stats .rs-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.08); }
+
+    /* Result Cards - Colored hover */
+    .result-card { border-left: 3px solid transparent; }
+    .result-card:hover {
+      border-color: #93c5fd !important;
+      border-left-color: #3b82f6 !important;
+      box-shadow: 0 2px 8px rgba(37,99,235,.08);
+    }
+    .rc-stage {
+      background: linear-gradient(135deg, rgba(37,99,235,.12), rgba(59,130,246,.06)) !important;
+      color: #1d4ed8 !important;
+    }
+    .rc-stage.knockout {
+      background: linear-gradient(135deg, rgba(249,115,22,.12), rgba(234,88,12,.06)) !important;
+      color: #c2410c !important;
+    }
+    .rc-stage.final-stage {
+      background: linear-gradient(135deg, rgba(245,158,11,.15), rgba(217,119,6,.08)) !important;
+      color: #b45309 !important;
+    }
+    .rc-score {
+      background: linear-gradient(135deg, rgba(16,185,129,.1), rgba(5,150,105,.06)) !important;
+      color: #047857 !important;
+    }
+
+    /* Rankings - Gold hover for top 3 */
+    .ranking-card:hover {
+      border-color: #fbbf24 !important;
+      box-shadow: 0 4px 12px rgba(245,158,11,.12);
+    }
+    .ranking-card .rank-num.top-3 {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b) !important;
+      color: #ffffff !important;
+      box-shadow: 0 2px 8px rgba(245,158,11,.25) !important;
+    }
+    .rank-bar { background: linear-gradient(90deg, #3b82f6, #60a5fa) !important; }
+    .rank-bar.top-bar { background: linear-gradient(90deg, #f59e0b, #fbbf24) !important; }
+
+    /* Group Cards - Blue header */
+    .group-card:hover {
+      border-color: #93c5fd !important;
+      box-shadow: 0 4px 16px rgba(37,99,235,.08);
+    }
+    .group-card-header {
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%) !important;
+    }
+    .group-letter {
+      background: linear-gradient(135deg, #1d4ed8, #2563eb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Filters - Focus ring */
+    .filter-group select:focus, .filter-group input:focus {
+      border-color: #3b82f6 !important;
+      box-shadow: 0 0 0 3px rgba(59,130,246,.1);
+    }
+
+    /* Bracket - Enhanced */
+    .bk-m:hover {
+      border-color: #3b82f6 !important;
+      box-shadow: 0 4px 16px rgba(37,99,235,.12) !important;
+    }
+    .bk-t.w {
+      background: linear-gradient(135deg, rgba(16,185,129,.15), rgba(5,150,105,.08)) !important;
+      color: #047857 !important;
+    }
+    .bk-champion {
+      border: 2px solid #fbbf24 !important;
+      box-shadow: 0 0 20px rgba(245,158,11,.15);
+    }
+    .bk-trophy {
+      filter: drop-shadow(0 0 20px rgba(245,158,11,.3)) !important;
+    }
+    .bk-rlbl {
+      background: linear-gradient(135deg, rgba(37,99,235,.06), rgba(37,99,235,.03)) !important;
+    }
+
+    /* Footer - Gradient border */
+    .footer {
+      border-top: 2px solid transparent !important;
+      border-image: linear-gradient(90deg, transparent, #3b82f6, #10b981, transparent) 1;
+    }
+    .footer a { color: #2563eb !important; }
+    .footer a:hover { color: #1d4ed8 !important; }
   </style>
 </head>
 <body>
