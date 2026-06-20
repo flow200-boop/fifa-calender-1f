@@ -1095,8 +1095,9 @@ function render() {
     const label = formatDateLabel(istDate);
     const day = dayName(istDate);
     const isSel = istDate === selectedDate;
+    const isCollapsed = getCollapsedDays().includes(istDate);
     html += `<div class="day-group">
-      <div class="day-header" style="${isSel ? 'border-color:#3b82f6;background:linear-gradient(135deg,#1a2045 0%,#1a1f35 100%)' : ''}">
+      <div class="day-header${isCollapsed ? ' collapsed' : ''}" style="${isSel ? 'border-color:#3b82f6;background:linear-gradient(135deg,#1a2045 0%,#1a1f35 100%)' : ''}">
         <span class="day-date">${label}</span>
         <span class="day-name">${day}</span>
         <span class="day-match-count">${matches.length} match${matches.length !== 1 ? 'es' : ''}</span>
@@ -1126,8 +1127,9 @@ function render() {
     html += `</div></div>`;
   });
   calendarEl.innerHTML = html;
-  document.querySelectorAll('.day-header').forEach(h => {
-    h.addEventListener('click', () => { h.classList.toggle('collapsed'); });
+  document.querySelectorAll('.day-header').forEach((h, idx) => {
+    const istDate = sortedDates[idx];
+    h.addEventListener('click', () => { toggleDayCollapse(istDate); h.classList.toggle('collapsed'); });
   });
   if (selectedDate) {
     setTimeout(() => {
@@ -1464,6 +1466,20 @@ function clearDown(round,idx){
   else if(round==='r16'){QFD.forEach((d,i)=>{if((d.t1.type==='r16'&&d.t1.m===idx)||(d.t2.type==='r16'&&d.t2.m===idx)){if(bP['qf_'+i]){delete bP['qf_'+i];clearDown('qf',i);}}});}
   else if(round==='qf'){SFD.forEach((d,i)=>{if((d.t1.type==='qf'&&d.t1.m===idx)||(d.t2.type==='qf'&&d.t2.m===idx)){if(bP['sf_'+i]){delete bP['sf_'+i];clearDown('sf',i);}}});}
   else if(round==='sf'){delete bP['final_0'];delete bP['third_0'];}
+}
+
+// === COLLAPSED DAYS PERSISTENCE ===
+function getCollapsedDays(){
+  return JSON.parse(localStorage.getItem('fifa2026_collapsedDays') || '[]');
+}
+function saveCollapsedDays(arr){
+  localStorage.setItem('fifa2026_collapsedDays', JSON.stringify(arr));
+}
+function toggleDayCollapse(istDate){
+  let collapsed = getCollapsedDays();
+  const idx = collapsed.indexOf(istDate);
+  if(idx > -1){ collapsed.splice(idx, 1); } else { collapsed.push(istDate); }
+  saveCollapsedDays(collapsed);
 }
 
 function bMatch(round,idx,t1,t2){
