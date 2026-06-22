@@ -501,6 +501,77 @@
       .rankings-grid { grid-template-columns: 1fr; }
     }
 
+    /* Team Modal */
+    .team-modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,.5);
+      z-index: 1000; display: flex; align-items: center; justify-content: center;
+      animation: fadeIn .2s ease-out; padding: 1rem;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .team-modal {
+      background: #ffffff; border-radius: 16px; width: 100%; max-width: 600px;
+      max-height: 85vh; overflow-y: auto; box-shadow: 0 25px 60px rgba(0,0,0,.3);
+      animation: modalSlideUp .3s ease-out;
+    }
+    @keyframes modalSlideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .team-modal-header {
+      display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem;
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      border-bottom: 1px solid #e2e8f0; border-radius: 16px 16px 0 0;
+      position: sticky; top: 0; z-index: 1;
+    }
+    .team-modal-header .tm-flag { font-size: 2rem; line-height: 1; }
+    .team-modal-header .tm-info { flex: 1; }
+    .team-modal-header .tm-name { font-size: 1.2rem; font-weight: 800; color: #1e293b; }
+    .team-modal-header .tm-meta { font-size: .75rem; color: #64748b; margin-top: .15rem; }
+    .team-modal-header .tm-close {
+      background: rgba(0,0,0,.06); border: none; border-radius: 8px;
+      width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 1rem; color: #64748b; transition: all .2s;
+    }
+    .team-modal-header .tm-close:hover { background: rgba(0,0,0,.1); color: #1e293b; }
+    .team-modal-body { padding: 1rem 1.5rem 1.5rem; }
+    .tm-section-title {
+      font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+      color: #94a3b8; margin-bottom: .5rem; display: flex; align-items: center; gap: .4rem;
+    }
+    .tm-section-title .tm-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+    }
+    .tm-section-title .tm-dot.played { background: #059669; }
+    .tm-section-title .tm-dot.upcoming { background: #f59e0b; }
+    .tm-match {
+      display: flex; align-items: center; gap: .75rem; padding: .65rem .85rem;
+      border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: .5rem;
+      transition: all .2s; background: #ffffff;
+    }
+    .tm-match:hover { border-color: #cbd5e1; background: #f8fafc; }
+    .tm-match .tm-stage {
+      font-size: .55rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+      color: #2563eb; background: rgba(59,130,246,.1); padding: .15rem .5rem;
+      border-radius: 4px; white-space: nowrap; min-width: 55px; text-align: center;
+    }
+    .tm-match .tm-stage.knockout { background: rgba(251,146,60,.1); color: #ea580c; }
+    .tm-match .tm-stage.final-stage { background: rgba(250,204,21,.1); color: #a16207; }
+    .tm-match .tm-opponent { flex: 1; font-size: .82rem; font-weight: 500; color: #1e293b; display: flex; align-items: center; gap: .35rem; }
+    .tm-match .tm-opponent .opp-flag { font-size: .95rem; }
+    .tm-match .tm-score {
+      font-family: 'JetBrains Mono', monospace; font-size: .85rem; font-weight: 800;
+      padding: .15rem .6rem; border-radius: 6px; white-space: nowrap; min-width: 42px; text-align: center;
+    }
+    .tm-match .tm-score.win { background: rgba(16,185,129,.1); color: #047857; }
+    .tm-match .tm-score.draw { background: rgba(245,158,11,.1); color: #b45309; }
+    .tm-match .tm-score.loss { background: rgba(239,68,68,.1); color: #dc2626; }
+    .tm-match .tm-score.pending { background: #f1f5f9; color: #94a3b8; }
+    .tm-match .tm-date-info { font-size: .68rem; color: #94a3b8; white-space: nowrap; text-align: right; min-width: 80px; }
+    .tm-match .tm-date-info .tm-time-small {
+      font-family: 'JetBrains Mono', monospace; color: #059669; font-weight: 500;
+    }
+    .tm-empty { text-align: center; padding: 1rem; color: #94a3b8; font-size: .8rem; }
+    .tm-separator { border: none; border-top: 1px solid #e2e8f0; margin: 1rem 0; }
+    .group-table td.clickable-team { cursor: pointer; transition: color .2s; }
+    .group-table td.clickable-team:hover { color: #2563eb; }
+
     .footer { text-align: center; padding: 2rem 1.5rem; font-size: .75rem; color: #94a3b8; border-top: 1px solid #f1f5f9; margin-top: 2rem; }
     .footer a { color: #94a3b8; text-decoration: none; }
     .footer a:hover { color: #2563eb; }
@@ -1540,7 +1611,7 @@ function renderGroups() {
       const gdStr = t.gd > 0 ? '+' + t.gd : String(t.gd);
       html += `<tr>
         <td><span class="team-pos ${posCls}">${pos}</span></td>
-        <td><div class="team-cell"><span class="team-flag-sm">${flg(t.name)}</span> ${t.name} <span class="team-rank">${RANKINGS[t.name] || ''}</span></div></td>
+        <td class="clickable-team" onclick="showTeamModal('${t.name.replace(/'/g, "\\'")}')" title="Click to see ${t.name}'s matches"><div class="team-cell"><span class="team-flag-sm">${flg(t.name)}</span> ${t.name} <span class="team-rank">${RANKINGS[t.name] || ''}</span></div></td>
         <td>${t.mp}</td>
         <td>${t.w}</td>
         <td>${t.d}</td>
@@ -1561,6 +1632,83 @@ function renderGroups() {
   });
   html += '</div>';
   listEl.innerHTML = html;
+}
+
+function showTeamModal(teamName) {
+  const allMatches = MATCHES.filter(m => m.team1 === teamName || m.team2 === teamName);
+  const played = allMatches.filter(m => !!m.result);
+  const upcoming = allMatches.filter(m => !m.result);
+  let groupLetter = '';
+  Object.keys(GROUP_TEAMS).forEach(letter => {
+    if (GROUP_TEAMS[letter].includes(teamName)) groupLetter = letter;
+  });
+  const rank = RANKINGS[teamName] || '—';
+  let playedHtml = '';
+  if (played.length === 0) {
+    playedHtml = '<div class="tm-empty">No matches played yet</div>';
+  } else {
+    played.forEach(m => {
+      const dt = parseUKTime(m.date, m.uk);
+      const ist = formatIST(dt);
+      const stageCls = getStageClass(m.stage);
+      const isTeam1 = m.team1 === teamName;
+      const opponent = isTeam1 ? m.team2 : m.team1;
+      const opponentFlag = flg(opponent);
+      const score = m.result;
+      const [s1, s2] = score.split('-').map(Number);
+      const teamScore = isTeam1 ? s1 : s2;
+      const oppScore = isTeam1 ? s2 : s1;
+      let resultCls = 'draw';
+      if (teamScore > oppScore) resultCls = 'win';
+      else if (teamScore < oppScore) resultCls = 'loss';
+      playedHtml += `<div class="tm-match">
+        <span class="tm-stage ${stageCls}">${m.stage.replace('Group ', '')}</span>
+        <div class="tm-opponent"><span class="opp-flag">${opponentFlag}</span> ${opponent} <span class="team-rank">${RANKINGS[opponent] || ''}</span></div>
+        <span class="tm-score ${resultCls}">${score}</span>
+        <div class="tm-date-info">${ist.dateStr}<br><span class="tm-time-small">${ist.timeStr} IST</span></div>
+      </div>`;
+    });
+  }
+  let upcomingHtml = '';
+  if (upcoming.length === 0) {
+    upcomingHtml = '<div class="tm-empty">No upcoming matches</div>';
+  } else {
+    upcoming.forEach(m => {
+      const dt = parseUKTime(m.date, m.uk);
+      const ist = formatIST(dt);
+      const stageCls = getStageClass(m.stage);
+      const isTeam1 = m.team1 === teamName;
+      const opponent = isTeam1 ? m.team2 : m.team1;
+      const opponentFlag = flg(opponent);
+      upcomingHtml += `<div class="tm-match">
+        <span class="tm-stage ${stageCls}">${m.stage.replace('Group ', '')}</span>
+        <div class="tm-opponent"><span class="opp-flag">${opponentFlag}</span> ${opponent} <span class="team-rank">${RANKINGS[opponent] || ''}</span></div>
+        <span class="tm-score pending">vs</span>
+        <div class="tm-date-info">${ist.dateStr}<br><span class="tm-time-small">${ist.timeStr} IST</span></div>
+      </div>`;
+    });
+  }
+  const overlay = document.createElement('div');
+  overlay.className = 'team-modal-overlay';
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
+  overlay.innerHTML = `<div class="team-modal">
+    <div class="team-modal-header">
+      <span class="tm-flag">${flg(teamName)}</span>
+      <div class="tm-info">
+        <div class="tm-name">${teamName}</div>
+        <div class="tm-meta">Group ${groupLetter} · FIFA Ranking #${rank} · ${played.length} played / ${upcoming.length} upcoming</div>
+      </div>
+      <button class="tm-close" onclick="this.closest('.team-modal-overlay').remove()">✕</button>
+    </div>
+    <div class="team-modal-body">
+      <div class="tm-section-title"><span class="tm-dot played"></span> Played (${played.length})</div>
+      ${playedHtml}
+      <hr class="tm-separator">
+      <div class="tm-section-title"><span class="tm-dot upcoming"></span> Upcoming (${upcoming.length})</div>
+      ${upcomingHtml}
+    </div>
+  </div>`;
+  document.body.appendChild(overlay);
 }
 
 setInterval(() => {
