@@ -1180,7 +1180,7 @@ function renderToday() {
       const stageBg = sc === 'final-stage' ? 'rgba(250,204,21,.1);color:#a16207' : sc === 'knockout' ? 'rgba(251,146,60,.1);color:#ea580c' : 'rgba(59,130,246,.1);color:#2563eb';
       html += `<div class="${cls}">
         <span class="tm-time">${isLive ? '<span class="tm-live-dot"></span>' : ''}${ist.timeStr} IST</span>
-        <span class="tm-teams"><span class="tm-team-flag">${flg(m.team1)}</span> ${m.team1} <span class="team-rank">${RANKINGS[m.team1] || ''}</span> <span class="tm-vs">vs</span> <span class="tm-team-flag">${flg(m.team2)}</span> ${m.team2} <span class="team-rank">${RANKINGS[m.team2] || ''}</span></span>
+        <span class="tm-teams"><span class="tm-team-flag">${flg(m.team1)}</span> <span class="clickable-team" onclick="showTeamModal('${m.team1.replace(/'/g, "\\'")}')">${m.team1}</span> <span class="team-rank">${RANKINGS[m.team1] || ''}</span> <span class="tm-vs">vs</span> <span class="tm-team-flag">${flg(m.team2)}</span> <span class="clickable-team" onclick="showTeamModal('${m.team2.replace(/'/g, "\\'")}')">${m.team2}</span> <span class="team-rank">${RANKINGS[m.team2] || ''}</span></span>
         <span class="tm-stage" style="background:${stageBg}">${m.stage.replace('Group ','')}</span>
         <span class="tm-venue">${m.country} ${m.city}</span>
       </div>`;
@@ -1213,9 +1213,9 @@ function renderResults() {
     html += `<div class="result-card ${wCls}">
       <span class="rc-stage ${stageCls}">${m.stage}</span>
       <div class="rc-teams">
-        <span class="rc-flag">${flg(m.team1)}</span><span>${m.team1}</span> <span class="team-rank">${RANKINGS[m.team1] || ''}</span>
+        <span class="rc-flag">${flg(m.team1)}</span><span class="clickable-team" onclick="showTeamModal('${m.team1.replace(/'/g, "\\'")}')">${m.team1}</span> <span class="team-rank">${RANKINGS[m.team1] || ''}</span>
         <span class="rc-vs">vs</span>
-        <span class="rc-flag">${flg(m.team2)}</span><span>${m.team2}</span> <span class="team-rank">${RANKINGS[m.team2] || ''}</span>
+        <span class="rc-flag">${flg(m.team2)}</span><span class="clickable-team" onclick="showTeamModal('${m.team2.replace(/'/g, "\\'")}')">${m.team2}</span> <span class="team-rank">${RANKINGS[m.team2] || ''}</span>
       </div>
       <span class="rc-score">${m.result}</span>
       <div class="rc-info">${ist.dateStr} · ${m.country} ${m.city}</div>
@@ -1371,9 +1371,9 @@ function render() {
       html += `<div class="match-card${hasResult || isPast ? ' finished' : ''}">
         <span class="match-stage ${stageClass}">${m.stage}</span>
         <div class="match-teams">
-          <span class="team-flag">${flg(m.team1)}</span><span>${m.team1}</span> <span class="team-rank">${RANKINGS[m.team1] || ''}</span>
+          <span class="team-flag">${flg(m.team1)}</span><span class="clickable-team" onclick="showTeamModal('${m.team1.replace(/'/g, "\\'")}')">${m.team1}</span> <span class="team-rank">${RANKINGS[m.team1] || ''}</span>
           <span class="vs">vs</span>
-          <span class="team-flag">${flg(m.team2)}</span><span>${m.team2}</span> <span class="team-rank">${RANKINGS[m.team2] || ''}</span>
+          <span class="team-flag">${flg(m.team2)}</span><span class="clickable-team" onclick="showTeamModal('${m.team2.replace(/'/g, "\\'")}')">${m.team2}</span> <span class="team-rank">${RANKINGS[m.team2] || ''}</span>
           ${hasResult ? `<span class="match-result">${m.result}</span>` : ''}
         </div>
         <div class="match-info">
@@ -1515,7 +1515,7 @@ function renderRankings() {
       <span class="rank-num ${rankCls}">#${t.rank}</span>
       <span class="rank-flag">${flg(t.name)}</span>
       <div class="rank-info">
-        <div class="rank-name">${t.name}</div>
+        <div class="rank-name clickable-team" onclick="showTeamModal('${t.name.replace(/'/g, "\\'")}')">${t.name}</div>
         <div class="rank-bar-track"><div class="rank-bar ${isTop3 || isTop10 ? 'top-bar' : ''}" style="width:${barPct}%"></div></div>
       </div>
       ${badge}
