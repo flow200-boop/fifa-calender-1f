@@ -496,9 +496,115 @@
     .group-legend .legend-dot.qualified { background: #059669; }
     .group-legend .legend-dot.playoff { background: #2563eb; }
     .group-legend .legend-dot.eliminated { background: #ef4444; }
+    .group-table tr.qual-1st td { background: rgba(16,185,129,.08); }
+    .group-table tr.qual-2nd td { background: rgba(59,130,246,.06); }
+    .group-table tr.qual-3rd-best td { background: rgba(245,158,11,.07); }
+    .group-table tr.qual-elim td { opacity: .45; }
+    .group-table tr.qual-elim td .team-pos { text-decoration: line-through; }
+
+    /* Qualification Tracker */
+    .qual-tracker {
+      background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px;
+      overflow: hidden; margin-bottom: 1.5rem;
+      animation: fadeSlideUp .35s ease-out;
+    }
+    .qual-tracker-header {
+      padding: 1rem 1.25rem;
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 50%, #dbeafe 100%);
+      border-bottom: 1px solid #e2e8f0;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem;
+    }
+    .qual-tracker-title {
+      font-size: 1rem; font-weight: 700; color: #1e293b;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .qual-tracker-title .qt-icon { font-size: 1.2rem; }
+    .qual-tracker-subtitle { font-size: .75rem; color: #64748b; }
+    .qual-tracker-summary {
+      display: flex; gap: .75rem; flex-wrap: wrap;
+    }
+    .qual-summary-chip {
+      display: flex; align-items: center; gap: .35rem;
+      background: rgba(0,0,0,.04); padding: .25rem .7rem; border-radius: 100px;
+      font-size: .7rem; font-weight: 600; color: #64748b;
+    }
+    .qual-summary-chip .qs-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+    }
+    .qual-summary-chip .qs-dot.q-green { background: #059669; }
+    .qual-summary-chip .qs-dot.q-blue { background: #2563eb; }
+    .qual-summary-chip .qs-dot.q-amber { background: #f59e0b; }
+    .qual-summary-chip .qs-dot.q-gray { background: #d1d5db; }
+
+    .qual-tracker-body { padding: 1rem 1.25rem 1.25rem; }
+    .qual-section { margin-bottom: 1rem; }
+    .qual-section:last-child { margin-bottom: 0; }
+    .qual-section-label {
+      font-size: .65rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .06em; color: #94a3b8; margin-bottom: .5rem;
+      display: flex; align-items: center; gap: .4rem;
+    }
+    .qual-section-label .qsl-dot {
+      width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+    }
+    .qual-section-label .qsl-dot.green { background: #059669; }
+    .qual-section-label .qsl-dot.blue { background: #2563eb; }
+    .qual-section-label .qsl-dot.amber { background: #f59e0b; }
+    .qual-section-label .qsl-dot.red { background: #ef4444; }
+    .qual-section-label .qsl-count {
+      background: rgba(0,0,0,.05); padding: .1rem .4rem; border-radius: 4px;
+      font-size: .6rem; margin-left: .2rem;
+    }
+
+    .qual-teams-grid {
+      display: flex; flex-wrap: wrap; gap: .35rem;
+    }
+    .qual-team-chip {
+      display: inline-flex; align-items: center; gap: .3rem;
+      padding: .3rem .6rem; border-radius: 8px; font-size: .75rem;
+      font-weight: 500; transition: all .2s; cursor: default;
+      border: 1px solid transparent;
+    }
+    .qual-team-chip:hover { transform: translateY(-1px); }
+    .qual-team-chip.qualified {
+      background: rgba(16,185,129,.1); color: #047857; border-color: rgba(16,185,129,.2);
+    }
+    .qual-team-chip.qualified:hover { background: rgba(16,185,129,.18); box-shadow: 0 2px 8px rgba(16,185,129,.12); }
+    .qual-team-chip.best-third {
+      background: rgba(245,158,11,.1); color: #b45309; border-color: rgba(245,158,11,.2);
+    }
+    .qual-team-chip.best-third:hover { background: rgba(245,158,11,.18); box-shadow: 0 2px 8px rgba(245,158,11,.12); }
+    .qual-team-chip.eliminated {
+      background: rgba(239,68,68,.06); color: #94a3b8; border-color: rgba(0,0,0,.06);
+      text-decoration: line-through; opacity: .6;
+    }
+    .qual-team-chip .qtc-flag { font-size: .9rem; line-height: 1; }
+    .qual-team-chip .qtc-group {
+      font-size: .5rem; font-weight: 700; color: #94a3b8;
+      background: rgba(0,0,0,.05); padding: .05rem .3rem; border-radius: 3px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .qual-team-chip .qtc-pts {
+      font-size: .55rem; font-weight: 700; font-family: 'JetBrains Mono', monospace;
+      background: rgba(0,0,0,.06); padding: .05rem .3rem; border-radius: 3px;
+      color: #64748b;
+    }
+    .qual-team-chip.qualified .qtc-pts { background: rgba(16,185,129,.12); color: #047857; }
+    .qual-team-chip.best-third .qtc-pts { background: rgba(245,158,11,.12); color: #b45309; }
+    .qual-team-chip.eliminated .qtc-pts { background: rgba(0,0,0,.04); color: #94a3b8; }
+
+    .qual-explanation {
+      margin-top: .75rem; padding: .65rem .85rem;
+      background: rgba(0,0,0,.02); border: 1px solid #e2e8f0;
+      border-radius: 8px; font-size: .68rem; color: #94a3b8;
+      line-height: 1.6;
+    }
+    .qual-explanation strong { color: #64748b; }
+
     @media (max-width: 768px) {
       .groups-grid { grid-template-columns: 1fr; }
       .rankings-grid { grid-template-columns: 1fr; }
+      .qual-tracker-summary { gap: .5rem; }
     }
 
     /* Team Modal */
@@ -915,6 +1021,7 @@
       <h2 class="groups-title">📊 Group Standings</h2>
       <p class="groups-subtitle">12 Groups · 4 Teams Each</p>
     </div>
+    <div id="qualTracker"></div>
     <div id="groupsList"></div>
   </div>
 
@@ -1575,10 +1682,169 @@ function calcGroupStandings() {
   return standings;
 }
 
+function calcBestThirds(standings) {
+  const thirds = [];
+  Object.keys(standings).forEach(letter => {
+    const teams = standings[letter];
+    if (teams.length >= 3) {
+      thirds.push({ ...teams[2], group: letter });
+    }
+  });
+  thirds.sort((a, b) => b.pts - a.pts || b.gd - a.gd || b.gf - a.gf);
+  return thirds;
+}
+
+function getTeamQualStatus(standings) {
+  const status = {};
+  Object.keys(standings).forEach(letter => {
+    standings[letter].forEach((t, i) => {
+      if (i <= 1) status[t.name] = 'qualified';
+      else if (i === 2) status[t.name] = 'third';
+      else status[t.name] = 'eliminated';
+    });
+  });
+  const best = calcBestThirds(standings);
+  best.slice(0, 8).forEach(t => { status[t.name] = 'best-third'; });
+  best.slice(8).forEach(t => { status[t.name] = 'eliminated'; });
+  return status;
+}
+
+function renderQualTracker() {
+  const trackerEl = document.getElementById('qualTracker');
+  const standings = calcGroupStandings();
+  const status = getTeamQualStatus(standings);
+  const bestThirds = calcBestThirds(standings);
+  const qualified = [], bestThird = [], eliminated = [];
+  Object.keys(status).forEach(name => {
+    const s = status[name];
+    let group = '';
+    Object.keys(standings).forEach(letter => {
+      if (standings[letter].some(t => t.name === name)) group = letter;
+    });
+    const teamData = { name, group };
+    if (s === 'qualified') qualified.push(teamData);
+    else if (s === 'best-third') bestThird.push(teamData);
+    else eliminated.push(teamData);
+  });
+
+  qualified.sort((a, b) => a.group.localeCompare(b.group));
+  bestThird.sort((a, b) => a.group.localeCompare(b.group));
+  eliminated.sort((a, b) => a.group.localeCompare(b.group));
+
+  let html = '<div class="qual-tracker">';
+  html += '<div class="qual-tracker-header">';
+  html += '<div><div class="qual-tracker-title"><span class="qt-icon">🎯</span> Qualification Tracker</div>';
+  html += '<div class="qual-tracker-subtitle">FIFA World Cup 2026 · Round of 32 Qualification</div></div>';
+  html += '<div class="qual-tracker-summary">';
+  html += `<div class="qual-summary-chip"><span class="qs-dot q-green"></span>${qualified.length} Qualified</div>`;
+  html += `<div class="qual-summary-chip"><span class="qs-dot q-amber"></span>${bestThird.length} Best 3rd</div>`;
+  html += `<div class="qual-summary-chip"><span class="qs-dot q-gray"></span>${eliminated.length} Eliminated</div>`;
+  html += '</div></div>';
+
+  html += '<div class="qual-tracker-body">';
+
+  // Best 3rd-placed teams section
+  const bestThirdsTop8 = bestThirds.slice(0, 8);
+
+  if (bestThirdsTop8.length > 0) {
+    html += '<div class="qual-section">';
+    html += '<div class="qual-section-label"><span class="qsl-dot amber"></span>Best 3rd-Placed Teams<span class="qsl-count">' + bestThirdsTop8.length + ' of 12</span></div>';
+    html += '<div class="qual-teams-grid">';
+    bestThirdsTop8.forEach(t => {
+      const pts = standings[t.group][2];
+      html += `<div class="qual-team-chip best-third" onclick="showTeamModal('${t.name.replace(/'/g, "\\'")}')" style="cursor:pointer" title="${t.name} · Group ${t.group} · ${pts.pts}pts · GD ${pts.gd > 0 ? '+' : ''}${pts.gd}">
+        <span class="qtc-flag">${flg(t.name)}</span>
+        <span>${t.name}</span>
+        <span class="qtc-group">${t.group}</span>
+        <span class="qtc-pts">${pts.pts}pts</span>
+      </div>`;
+    });
+    html += '</div></div>';
+  }
+
+  // 1st place teams
+  const firstPlace = qualified.filter(t => {
+    const s = status[t.name];
+    return s === 'qualified';
+  });
+  const firstTeams = firstPlace.filter(t => {
+    return standings[t.group] && standings[t.group][0] && standings[t.group][0].name === t.name;
+  });
+  if (firstTeams.length > 0) {
+    html += '<div class="qual-section">';
+    html += '<div class="qual-section-label"><span class="qsl-dot green"></span>Group Winners (1st)<span class="qsl-count">' + firstTeams.length + '/12</span></div>';
+    html += '<div class="qual-teams-grid">';
+    firstTeams.forEach(t => {
+      const team = standings[t.group][0];
+      html += `<div class="qual-team-chip qualified" onclick="showTeamModal('${t.name.replace(/'/g, "\\'")}')" style="cursor:pointer" title="${t.name} · Group ${t.group} · ${team.pts}pts · GD ${team.gd > 0 ? '+' : ''}${team.gd}">
+        <span class="qtc-flag">${flg(t.name)}</span>
+        <span>${t.name}</span>
+        <span class="qtc-group">${t.group}</span>
+        <span class="qtc-pts">${team.pts}pts</span>
+      </div>`;
+    });
+    html += '</div></div>';
+  }
+
+  // 2nd place teams
+  const secondTeams = firstPlace.filter(t => {
+    return standings[t.group] && standings[t.group][1] && standings[t.group][1].name === t.name;
+  });
+  if (secondTeams.length > 0) {
+    html += '<div class="qual-section">';
+    html += '<div class="qual-section-label"><span class="qsl-dot green"></span>Runners-Up (2nd)<span class="qsl-count">' + secondTeams.length + '/12</span></div>';
+    html += '<div class="qual-teams-grid">';
+    secondTeams.forEach(t => {
+      const team = standings[t.group][1];
+      html += `<div class="qual-team-chip qualified" onclick="showTeamModal('${t.name.replace(/'/g, "\\'")}')" style="cursor:pointer" title="${t.name} · Group ${t.group} · ${team.pts}pts · GD ${team.gd > 0 ? '+' : ''}${team.gd}">
+        <span class="qtc-flag">${flg(t.name)}</span>
+        <span>${t.name}</span>
+        <span class="qtc-group">${t.group}</span>
+        <span class="qtc-pts">${team.pts}pts</span>
+      </div>`;
+    });
+    html += '</div></div>';
+  }
+
+  // Eliminated teams
+  if (eliminated.length > 0) {
+    html += '<div class="qual-section">';
+    html += '<div class="qual-section-label"><span class="qsl-dot red"></span>Eliminated<span class="qsl-count">' + eliminated.length + '</span></div>';
+    html += '<div class="qual-teams-grid">';
+    eliminated.forEach(t => {
+      const s = status[t.name];
+      let team = null;
+      if (standings[t.group]) {
+        team = standings[t.group].find(team => team.name === t.name);
+      }
+      if (!team) team = { pts: 0, gd: 0 };
+      html += `<div class="qual-team-chip eliminated" onclick="showTeamModal('${t.name.replace(/'/g, "\\'")}')" style="cursor:pointer" title="${t.name} · Group ${t.group} · ${team.pts}pts · GD ${team.gd > 0 ? '+' : ''}${team.gd}">
+        <span class="qtc-flag">${flg(t.name)}</span>
+        <span>${t.name}</span>
+        <span class="qtc-group">${t.group}</span>
+        <span class="qtc-pts">${team.pts}pts</span>
+      </div>`;
+    });
+    html += '</div></div>';
+  }
+
+  html += '<div class="qual-explanation">';
+  html += '<strong>📋 FIFA 2026 Format:</strong> 12 groups · Top 2 from each group qualify (24 teams) + best 8 third-placed teams (8 teams) = <strong>32 teams</strong> advance to the Round of 32. Best thirds are ranked by points, then goal difference, then goals scored.';
+  html += '</div>';
+
+  html += '</div></div>';
+  trackerEl.innerHTML = html;
+}
+
 function renderGroups() {
   const listEl = document.getElementById('groupsList');
   const standings = calcGroupStandings();
+  const status = getTeamQualStatus(standings);
   const letters = Object.keys(standings).sort();
+
+  // Render qualification tracker
+  renderQualTracker();
+
   let html = '<div class="groups-grid">';
   letters.forEach((letter, idx) => {
     const teams = standings[letter];
@@ -1609,7 +1875,13 @@ function renderGroups() {
       const posCls = pos <= 2 ? 'pos-' + pos : pos === 3 ? 'pos-3' : 'pos-4';
       const gdCls = t.gd > 0 ? 'gd-positive' : t.gd < 0 ? 'gd-negative' : 'gd-zero';
       const gdStr = t.gd > 0 ? '+' + t.gd : String(t.gd);
-      html += `<tr>
+      const qs = status[t.name] || '';
+      let rowCls = '';
+      if (qs === 'qualified' && pos === 1) rowCls = 'qual-1st';
+      else if (qs === 'qualified' && pos === 2) rowCls = 'qual-2nd';
+      else if (qs === 'best-third') rowCls = 'qual-3rd-best';
+      else if (qs === 'eliminated') rowCls = 'qual-elim';
+      html += `<tr class="${rowCls}">
         <td><span class="team-pos ${posCls}">${pos}</span></td>
         <td class="clickable-team" onclick="showTeamModal('${t.name.replace(/'/g, "\\'")}')" title="Click to see ${t.name}'s matches"><div class="team-cell"><span class="team-flag-sm">${flg(t.name)}</span> ${t.name} <span class="team-rank">${RANKINGS[t.name] || ''}</span></div></td>
         <td>${t.mp}</td>
@@ -1625,8 +1897,8 @@ function renderGroups() {
     html += `</tbody></table>
       <div class="group-legend">
         <span><span class="legend-dot qualified"></span> Qualified (1st-2nd)</span>
-        <span><span class="legend-dot playoff"></span> Playoff (3rd)</span>
-        <span><span class="legend-dot eliminated"></span> Eliminated (4th)</span>
+        <span><span class="legend-dot playoff"></span> Best 3rd</span>
+        <span><span class="legend-dot eliminated"></span> Eliminated</span>
       </div>
     </div>`;
   });
