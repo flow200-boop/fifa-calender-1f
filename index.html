@@ -1148,8 +1148,8 @@ const MATCHES = [
   { date:"2026-06-24", uk:"23:00", stage:"Group C", team1:"Scotland", team2:"Brazil", venue:"Hard Rock Stadium", city:"Miami Gardens", country:"🇺🇸", result:"0-3" },
   { date:"2026-06-25", uk:"02:00", stage:"Group A", team1:"South Africa", team2:"South Korea", venue:"Estadio BBVA", city:"Guadalupe", country:"🇲🇽", result:"1-0" },
   { date:"2026-06-25", uk:"02:00", stage:"Group A", team1:"Czech Republic", team2:"Mexico", venue:"Estadio Azteca", city:"Mexico City", country:"🇲🇽", result:"0-3" },
-  { date:"2026-06-25", uk:"21:00", stage:"Group E", team1:"Curacao", team2:"Ivory Coast", venue:"Lincoln Financial Field", city:"Philadelphia", country:"🇺🇸" },
-  { date:"2026-06-25", uk:"21:00", stage:"Group E", team1:"Ecuador", team2:"Germany", venue:"MetLife Stadium", city:"East Rutherford", country:"🇺🇸" },
+  { date:"2026-06-25", uk:"21:00", stage:"Group E", team1:"Curacao", team2:"Ivory Coast", venue:"Lincoln Financial Field", city:"Philadelphia", country:"🇺🇸", result:"0-2" },
+  { date:"2026-06-25", uk:"21:00", stage:"Group E", team1:"Ecuador", team2:"Germany", venue:"MetLife Stadium", city:"East Rutherford", country:"🇺🇸", result:"2-1" },
   { date:"2026-06-26", uk:"00:00", stage:"Group F", team1:"Tunisia", team2:"Netherlands", venue:"Arrowhead Stadium", city:"Kansas City", country:"🇺🇸" },
   { date:"2026-06-26", uk:"00:00", stage:"Group F", team1:"Japan", team2:"Sweden", venue:"AT&T Stadium", city:"Arlington", country:"🇺🇸" },
   { date:"2026-06-26", uk:"03:00", stage:"Group D", team1:"Turkey", team2:"USA", venue:"SoFi Stadium", city:"Los Angeles", country:"🇺🇸" },
@@ -2092,8 +2092,8 @@ function toggleDayCollapse(istDate){
 function bMatch(round,idx,t1,t2){
   const key=round+'_'+idx;
   const pick=bP[key]||null;
-  const c1='bt'+(!t1?' tbd':'')+(pick===t1?' w':(pick&&pick!==t1?' l':''));
-  const c2='bt'+(!t2?' tbd':'')+(pick===t2?' w':(pick&&pick!==t2?' l':''));
+  const c1='bk-t'+(!t1?' tbd':'')+(pick===t1?' w':(pick&&pick!==t1?' l':''));
+  const c2='bk-t'+(!t2?' tbd':'')+(pick===t2?' w':(pick&&pick!==t2?' l':''));
   const n1=t1||'TBD',n2=t2||'TBD';
   const f1=t1?flg(t1):'❓',f2=t2?flg(t2):'❓';
   const r1=t1&&RANKINGS[t1]?RANKINGS[t1]:'';
@@ -2108,8 +2108,8 @@ function bMatch(round,idx,t1,t2){
   </div>`;
 }
 
-const TOP_HALF={r32:{pairs:[[0,2],[1,4],[3,5],[6,7]]},r16:{pairs:[[0,1],[2,3]]},qf:{pairs:[[0,2]]},sf:{solo:0}};
-const BOT_HALF={r32:{pairs:[[10,11],[8,9],[13,15],[12,14]]},r16:{pairs:[[4,5],[6,7]]},qf:{pairs:[[1,3]]},sf:{solo:1}};
+const TOP_HALF={r32:{pairs:[[0,2],[1,4],[10,11],[8,9]]},r16:{pairs:[[0,1],[4,5]]},qf:{pairs:[[0,1]]},sf:{solo:0}};
+const BOT_HALF={r32:{pairs:[[3,5],[6,7],[13,15],[12,14]]},r16:{pairs:[[2,3],[6,7]]},qf:{pairs:[[2,3]]},sf:{solo:1}};
 
 function renderHalfSide(half,st){
   const rounds=[
