@@ -2030,6 +2030,31 @@ const SFD=[
 const FNL={t1:{type:'sf',m:0},t2:{type:'sf',m:1}};
 const THRD={t1:{type:'sf',m:0,losers:true},t2:{type:'sf',m:1,losers:true}};
 
+let thirdMap={};
+function precomputeThirds(st){
+  thirdMap={};
+  const used=new Set();
+  for(let i=0;i<R32D.length;i++){
+    const match=R32D[i];
+    [match.t1,match.t2].forEach(slot=>{
+      if(slot&&slot.type==='third'){
+        const key=slot.gs.join(',');
+        if(thirdMap[key]!==undefined)return;
+        const candidates=slot.gs
+          .map(g=>st[g]&&st[g][2]?{...st[g][2],group:g}:null)
+          .filter(t=>t&&!used.has(t.name))
+          .sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf);
+        if(candidates.length>0){
+          thirdMap[key]=candidates[0].name;
+          used.add(candidates[0].name);
+        }else{
+          thirdMap[key]=null;
+        }
+      }
+    });
+  }
+}
+
 
 
 let bP=JSON.parse(localStorage.getItem('fifa2026_bracket')||'{}');
@@ -2039,7 +2064,7 @@ function resetB(){bP={};saveB();renderBracket();}
 function getTeamForSlot(slot,st){
   if(!slot)return null;
   if(slot.type==='group'){const g=st[slot.g];return(g&&g[slot.p-1])?g[slot.p-1].name:null;}
-  if(slot.type==='third')return getBestThird(slot.gs,st);
+  if(slot.type==='third'){const key=slot.gs.join(',');return thirdMap[key]!==undefined?thirdMap[key]:getBestThird(slot.gs,st);}
   if(slot.type==='r32')return bP['r32_'+slot.m]||null;
   if(slot.type==='r16')return bP['r16_'+slot.m]||null;
   if(slot.type==='qf')return bP['qf_'+slot.m]||null;
@@ -2146,6 +2171,7 @@ function renderBracket(){
   const el=document.getElementById('bracketView');
   if(!el)return;
   const st=calcGroupStandings();
+  precomputeThirds(st);
   const ft1=getTeamForSlot(FNL.t1,st),ft2=getTeamForSlot(FNL.t2,st);
   const fp=bP['final_0']||null;
   let champ=null;
